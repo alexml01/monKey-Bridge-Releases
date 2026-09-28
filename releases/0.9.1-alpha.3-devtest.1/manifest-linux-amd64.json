@@ -1,0 +1,23 @@
+{
+  "Product": "MONKey Bridge",
+  "FirmwareVersion": "0.9.1-alpha.3",
+  "Produktstand": "Phase 16 · Zwischen-Run 6",
+  "BuildVersion": "0.9.1-alpha.3+3089fd5",
+  "BuildID": "build-3089fd5",
+  "GitCommit": "3089fd527e3842bff759ec08fcd0a8ae724ca326",
+  "GitDirty": false,
+  "BuildDate": "2026-09-28T08:26:50.284+02:00",
+  "Architecture": "linux/amd64",
+  "SchemaVersion": "1",
+  "MinimumCompatibleVersion": "0.9.1-alpha.3",
+  "ReleaseChannel": "development",
+  "Checksum": "2bda59e8fc8e5af78381d2901e75576eba1b158f47f89abff0b702830eedd959",
+  "Signature": "CKZ+Pg3wXFGlqt2bUg1U6q24VI9779QPkE/24qIBxQLxfzqsRnINQQFEeZMj0fHZ/cV2oJgwcQk442k629AHAw==",
+  "KeyID": "dev-2026-09",
+  "MinimumSupportedVersion": "",
+  "MinimumSchemaVersion": "",
+  "TargetSchemaVersion": "",
+  "SupportedOS": null,
+  "SupportedArch": null,
+  "Artifacts": null
+}

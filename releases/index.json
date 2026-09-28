@@ -1,0 +1,15 @@
+{
+  "releases": [
+    {
+      "version": "0.9.1-alpha.3-devtest.1",
+      "releaseDate": "2026-09-28T06:29:34Z",
+      "channel": "development",
+      "summary": "Phase 17 Firmware-/Repository-Realtest: erster echter Release ueber das oeffentliche Release-Repository, Quellcode-Commit 3089fd5.",
+      "minimumSupportedVersion": "",
+      "payloadUrls": {
+        "linux-amd64": "https://github.com/alexml01/monKey-Bridge-Releases/releases/download/0.9.1-alpha.3-devtest.1/payload-linux-amd64.tar",
+        "linux-arm64": "https://github.com/alexml01/monKey-Bridge-Releases/releases/download/0.9.1-alpha.3-devtest.1/payload-linux-arm64.tar"
+      }
+    }
+  ]
+}
