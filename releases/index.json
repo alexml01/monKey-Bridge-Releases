@@ -1,6 +1,18 @@
 {
   "releases": [
     {
+      "version": "0.9.1-alpha.3-devtest.3",
+      "releaseDate": "2026-09-28T21:00:00Z",
+      "channel": "development",
+      "summary": "Portal-Wartung: Update-UX korrigiert - ein Verbindungsabbruch waehrend des Cutovers (Bridge/Portal restarten) wird nicht mehr faelschlich als 'Fehlgeschlagen' dargestellt, sondern als 'MONKey wird neu gestartet'; Fortschritt/Terminalzustaende (SUCCESS/FAILED/ROLLED_BACK) kommen ausschliesslich aus dem bestehenden Update-Job-Status.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Wartungsseite: korrekte UX bei Cutover-Verbindungsabbruch (kein falsches 'Fehlgeschlagen')",
+        "Wartungsseite: automatisches Wiederaufnehmen des Zustands nach Browser-Reload waehrend eines laufenden Updates",
+        "Wartungsseite: Doppelstart-Schutz (Buttons gesperrt waehrend eines aktiven Jobs)"
+      ]
+    },
+    {
       "version": "0.9.1-alpha.3-devtest.2",
       "releaseDate": "2026-09-28T20:05:00Z",
       "channel": "development",
