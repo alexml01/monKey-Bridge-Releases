@@ -1,6 +1,18 @@
 {
   "releases": [
     {
+      "version": "0.9.1",
+      "releaseDate": "2026-09-29T22:53:11Z",
+      "channel": "development",
+      "summary": "Finales Phase-17-Release: ThingsBoard Gateway-Connect-Lifecycle von Backend.Bind()/State-Telemetry-Binding entkoppelt (backend_bindings-Tabelle als alleinige Quelle fuer Bridge-Eigentum je Geraet), monkey.control Golden Path fuer CUE und Crestron live verifiziert, MONKey System Agent (privilegierter Self-Update-/Wartungs-Lifecycle) produktiv.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "ThingsBoard Gateway-Connect unabhaengig von Backend-Bind-Lifecycle (v1/gateway/connect fuer alle gebundenen Geraete, auch ohne aktive State-Telemetry-Bindung)",
+        "monkey.control Golden Path (CUE + Crestron) live verifiziert",
+        "MONKey System Agent: signierter Self-Update-Lifecycle (Verify->Stage->Cutover->Restart->Observe->Commit/Rollback), Ed25519-Manifestsignatur, Maintenance-Lock, UpdateJob-Persistenz"
+      ]
+    },
+    {
       "version": "0.9.1-alpha.3-devtest.3",
       "releaseDate": "2026-09-28T21:00:00Z",
       "channel": "development",
