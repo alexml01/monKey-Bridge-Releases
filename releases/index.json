@@ -4,9 +4,7 @@
       "version": "0.9.2-alpha.4",
       "releaseDate": "2026-10-01T10:00:00Z",
       "channel": "development",
-      "summary": [
-        "Phase 18 Run 4: crossXio als vollstaendiger Systemtyp (\"crossxio_av\") bis zur produktiven Bedienung ueber Bridge/Portal/ThingsBoard. Neuer gemeinsamer kanonischer Systemzustand (CrossXioSystemState) und Routing-Befehl (RouteCrossXioSystem/MultiRouteCrossXioSystem), von Portal UND ThingsBoard-RPC (monkey.system.state/.route/.multiroute) gleichermassen genutzt. Dabei eine echte, vorher unentdeckte Produktionsluecke gefunden und behoben: weder der crossXio- noch der WolfVision-Connector erfuellten das volle monitor.Source-Interface, wodurch beide Geraetetypen in einer echten Bridge-Instanz nie Teil von internal/monitor.Store waren."
-      ],
+      "summary": "Phase 18 Run 4: crossXio als vollstaendiger Systemtyp (\"crossxio_av\") bis zur produktiven Bedienung ueber Bridge/Portal/ThingsBoard. Neuer gemeinsamer kanonischer Systemzustand (CrossXioSystemState) und Routing-Befehl (RouteCrossXioSystem/MultiRouteCrossXioSystem), von Portal UND ThingsBoard-RPC (monkey.system.state/.route/.multiroute) gleichermassen genutzt. Dabei eine echte, vorher unentdeckte Produktionsluecke gefunden und behoben: weder der crossXio- noch der WolfVision-Connector erfuellten das volle monitor.Source-Interface, wodurch beide Geraetetypen in einer echten Bridge-Instanz nie Teil von internal/monitor.Store waren.",
       "minimumSupportedVersion": "",
       "features": [
         "Kanonischer crossXio-Systemzustand + Routing-/Multi-Routing-Befehl, gemeinsam genutzt von Portal und ThingsBoard-RPC (monkey.system.state/.route/.multiroute)",
