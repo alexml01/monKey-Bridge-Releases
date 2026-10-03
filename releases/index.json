@@ -1,6 +1,22 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.8",
+      "releaseDate": "2026-10-03T21:20:00Z",
+      "channel": "development",
+      "summary": "Phase 18 Run 8: Quellcode-Commit 86ae115 (Versionssprung auf origin/main). Enthaelt: Validator-Wiederholung innerhalb der Startfrist (refused/starting/ready), Readiness-Vertrag mit Controller-Fortschritt, Attempt-Protokoll je Validierungsversuch (budget-cut als eigenes Ergebnis), Wartungsoberflaeche aus dem Job-Zustand, MQTT ClientID-Fix, MQTT TLS verify-first (kontrollierter Fallback), per-Phase-Startup-Timing.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Update-Validator wiederholt RELEASE_VALIDATION innerhalb der Startfrist; refused und starting sind voruebergehend, ready wird sofort bestaetigt",
+        "GET /monitor/readiness mit Controller-Fortschritt (controllersTotal/Completed/Failed)",
+        "Protokoll je Validierungsversuch: Nummer, Zeitpunkt, Dauer, Ergebnis (refused/starting/ready/fatal/budget-cut)",
+        "Wartungsoberflaeche: laufender Zustand nur aus aktivem Job, Ergebnis und Grund bei Rollback",
+        "MQTT ClientID-Ueberlappung behoben",
+        "MQTT TLS verify-first mit kontrolliertem Fallback fuer OpenRemote",
+        "Per-Phase-Startup-Timing in buildRuntime, sichtbar auf /monitor/startup"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.7",
       "releaseDate": "2026-10-03T12:17:00Z",
       "channel": "development",
