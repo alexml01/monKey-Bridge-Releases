@@ -1,6 +1,27 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.6",
+      "releaseDate": "2026-10-03T12:17:00Z",
+      "channel": "development",
+      "summary": "Phase 18 Run 6: Quellcode-Commit 7aa70ed (Versionssprung-Commit auf origin/main ebd3758). Fasst den kompletten bis dahin gemergten Entwicklungsstand zusammen - alles, was bereits fuer das NIE veroeffentlichte 0.9.2-alpha.5 vorgesehen war, PLUS die seitdem gemergte Polling-/Scheduling-Architektur (Phase 18, Abschnitte 1-10/13): generisches devicestate State/Health/Freshness-Modell mit restart-resistenter Persistenz, Offline-Karenzzeit + Poll-Jitter + adaptivem Backoff fuer EDU/WolfVision/crossXio, von Scheduler-Verzoegerung getrennte Request-Dauer-Beobachtbarkeit (OnPollObserved), neues Paket internal/pollsched (prioritaetsbewusstes Nebenlaeufigkeits-Gate), crossXio-Firmware-Inventar-Caching, neuer Endpunkt GET /monitor/performance. 0.9.2-alpha.5 (Commit e2b7995) bleibt dauerhaft uebersprungen, nie veroeffentlicht.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Portal-Hintergrundjob-/Beobachtbarkeits-Infrastruktur (internal/jobrun) loest cmd/portal/jobs.go vollstaendig ab",
+        "Persistente Backend-Sync-Queue fuer die Dublettenbereinigung",
+        "Identity-Engine-Vereinheitlichung + kanonische MAC-Anzeige im Geraeteinventar",
+        "crossXio-Systemseite (Uebersicht/Routing/Geraete/Monitoring) + Root-Cause-Fix: crossXio/WolfVision erfuellen jetzt das volle monitor.Source-Interface",
+        "Generisch korrigierter Live-Status fuer indirekte (Namespace-Kind-)EDU/CUE-Geraete",
+        "Echtes Portal-Login/Logout mit Session-Cookie zusaetzlich zu HTTP Basic Auth",
+        "Reload-Performance-Fix (rl.mu/buildMu-Trennung): live gemessene 74.36s-Lese-Blockade behoben",
+        "Zabbix-Backend-Adapter vorbereitet (internal/zabbix, noch nicht an cmd/bridge verdrahtet)",
+        "NEU: devicestate Offline-Karenzzeit + Poll-Jitter + adaptiver Backoff fuer EDU/WolfVision/crossXio",
+        "NEU: Scheduler-Delay von Request-Dauer getrennt beobachtbar (OnPollObserved), GET /monitor/performance",
+        "NEU: internal/pollsched (prioritaetsbewusstes Nebenlaeufigkeits-Gate, Grundlage fuer spaetere Abschnitte 5/6)",
+        "NEU: crossXio-Firmware-Inventar wird gecacht statt bei jedem Poll erneut abgefragt"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.4",
       "releaseDate": "2026-10-01T10:00:00Z",
       "channel": "development",
