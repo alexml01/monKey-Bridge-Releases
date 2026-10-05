@@ -1,6 +1,19 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.9.3",
+      "releaseDate": "2026-10-06T00:40:00Z",
+      "channel": "development",
+      "summary": "Transition Release (Bestand Alpha.9 -> Alpha.10). Quellcommit 4a3bdc1. Ersetzt 0.9.2-alpha.9.2 (unveraendert). Enthaelt die Payload-Containment-Korrektur aus Alpha.10 sowie den Snapshot-Vertrag und den Host-Helfer-Bootstrap. Keine fachliche DB-Migration. Nicht fuer produktive Kanaele.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Payload-Pruefung: kontrolliertes Unterverzeichnis der Download-Area erlaubt, Escapes abgelehnt",
+        "Bridge uebergibt dbSnapshot, wenn vorhanden; Agent verifiziert ihn; ohne dbSnapshot Rueckfall auf validierten Live-Snapshot (nur Transition)",
+        "Host-Helfer monkey-host-migrate (Bootstrap ohne Entfernen der Alt-Regel)",
+        "Release signiert (dev-2026-09), linux-amd64"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.9.2",
       "releaseDate": "2026-10-06T00:36:00Z",
       "channel": "development",
