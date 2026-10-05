@@ -1,6 +1,21 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.10",
+      "releaseDate": "2026-10-05T21:50:00Z",
+      "channel": "development",
+      "summary": "Alpha.10 Development-RC: Quellcode-Commit 0188d47 (ML-monkey-bridge). Nicht fuer produktive Kanaele. Enthaelt: verifizierende Helfer-Installation (signierte Datei-Digests), Pre-Update-Snapshot im Installationspfad, Migrationsschutz beim manuellen Rollback, Storage-Preflight, OS-Maintenance ueber den Host-Helfer, NTP/Zeitzone ueber den Helfer.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Pre-Update-DB-Snapshot vor jedem Install, Verifikation vor Cutover (fail closed)",
+        "System Agent ohne direkten Zugriff auf die Live-Datenbank; Live-DB-Modus 0600",
+        "Helfer monkey-host-migrate: Host-Migration, verifizierte Artefaktinstallation, OS-Maintenance (check, upgrade, reboot)",
+        "Wildcard-Installationsregel des Agenten entfernt",
+        "Zeit/NTP und Zeitzonenauswahl ueber den Helfer (keine Passwortabfrage durch sudo)",
+        "Release signiert (dev-2026-09), linux-amd64; arm64 folgt nach Freigabe"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.9",
       "releaseDate": "2026-10-05T09:04:27Z",
       "channel": "development",
