@@ -1,6 +1,20 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.9.1",
+      "releaseDate": "2026-10-06T00:16:00Z",
+      "channel": "development",
+      "summary": "Transition Release (Migrationsbruecke fuer bestehende Alpha.9-Installationen). Quellcode-Commit 488289a. Enthaelt: Pre-Update-DB-Snapshot im Installationspfad (Bridge erzeugt, Agent verifiziert), Host-Helfer fuer den einmaligen Bootstrap. Keine fachliche DB-Migration. Kein produktiver Kanal.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Bridge erzeugt Pre-Update-DB-Snapshot und uebergibt dbSnapshot an install_release",
+        "Agent verifiziert den Snapshot (Groesse, SHA-256, Rechte) vor dem Cutover",
+        "Host-Helfer monkey-host-migrate (Bootstrap), Plan ohne Entfernen der Alt-Wildcard-Regel",
+        "Agent reconciliert den Host beim Start und entfernt danach die Alt-Regel",
+        "Release signiert (dev-2026-09), linux-amd64"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.10.1",
       "releaseDate": "2026-10-06T00:05:00Z",
       "channel": "development",
