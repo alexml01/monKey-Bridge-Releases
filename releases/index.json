@@ -388,6 +388,17 @@
         "Privilegierter Broker: Sandbox mit eingegrenzten Schreibpfaden und Capabilities",
         "Release signiert (dev-2026-09), linux-amd64, GitDirty=false"
       ]
+    },
+    {
+      "version": "0.9.2-alpha.10.15",
+      "releaseDate": "2026-10-06T16:18:19Z",
+      "channel": "development",
+      "summary": "Alpha.10.15 Development-RC: Quellcommit 7ea7ae7 (ML-monkey-bridge). MQTT-Anbindung ueberlebt fehlendes Netzwerk beim Start (Erstverbindung und Subscriptions werden nachgeholt). Nicht fuer produktive Kanaele. Ersetzt 0.9.2-alpha.10.14.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "MQTT: Wiederholung der Erstverbindung, Subscriptions werden nach Verbindungsaufbau wiederhergestellt",
+        "Release signiert (dev-2026-09), linux-amd64, GitDirty=false"
+      ]
     }
   ]
 }

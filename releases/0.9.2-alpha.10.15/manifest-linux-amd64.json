@@ -1,0 +1,41 @@
+{
+  "Product": "MONKey Bridge",
+  "FirmwareVersion": "0.9.2-alpha.10.15",
+  "Produktstand": "Phase 18 · Alpha.10",
+  "BuildVersion": "0.9.2-alpha.10.15+7ea7ae7",
+  "BuildID": "20261006-161819-7ea7ae7",
+  "GitCommit": "7ea7ae7ff723fd1841402ad8f23a39fbcb8bd7e8",
+  "GitDirty": false,
+  "BuildDate": "2026-10-06T16:18:25.328+02:00",
+  "Architecture": "linux/amd64",
+  "SchemaVersion": "1",
+  "MinimumCompatibleVersion": "0.9.2-alpha.10.15",
+  "ReleaseChannel": "development",
+  "Checksum": "88e762ef67b9232a20fc8049ce184713028e0c5f611fc2a52b75ffd39225c2e4",
+  "Signature": "OlzR7fyLo3L8yl6nCr2Pw5MiYJk9ncQES+OMq+Z7lrxCQlFEtmwxaexItIWUBBB0i4qhddIPeJVKKSdBIK8mBg==",
+  "KeyID": "dev-2026-09",
+  "MinimumSupportedVersion": "",
+  "MinimumSchemaVersion": "",
+  "TargetSchemaVersion": "",
+  "SupportedOS": null,
+  "SupportedArch": null,
+  "Files": [
+    {
+      "Name": "bridge",
+      "SHA256": "cf93b7b1c0d129d334d99ef0b0af8ad45f6b27c4a11c402c8d9d9d5b1b074b28"
+    },
+    {
+      "Name": "portal",
+      "SHA256": "26331c04f3b66b2dbac525dae26c6baa4f6cafe1a6181088e99202b1161ece7e"
+    },
+    {
+      "Name": "monkey-system-agent",
+      "SHA256": "8065042facae3c27027452ef8bb3adeba5c30e2ce80e9c4df8975cf06ce7976c"
+    },
+    {
+      "Name": "monkey-host-migrate",
+      "SHA256": "cc26a71f1842aa47162d70a4996b7ce8f74525ac0c9fcf82206ce8682565ef09"
+    }
+  ],
+  "Artifacts": null
+}
