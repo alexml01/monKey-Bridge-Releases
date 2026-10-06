@@ -1,6 +1,20 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.10.5",
+      "releaseDate": "2026-10-06T21:00:00Z",
+      "channel": "development",
+      "summary": "Alpha.10 RC (Dev-VM-Gate). Quellcommit a366e94. Ersetzt 0.9.2-alpha.10.4 (Helfer-Lock lag unter ProtectSystem=strict in /run; os reboot/upgrade/check brachen ab; unveraendert). Keine fachliche DB-Migration gegenueber Alpha.9. Nicht fuer produktive Kanaele.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Helfer-Lock im Zustandsordner (Sandbox-konform)",
+        "Immutable Release Binding (expectedRelease), fail closed",
+        "commandId-Idempotenz: atomares Ledger, Replay ohne Side Effects, COMMAND_ID_CONFLICT",
+        "Host-Voraussetzungen getrennt (BOOTSTRAP_REQUIRED), Runtime-Migration gegatet",
+        "Release signiert (dev-2026-09), linux-amd64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.10.4",
       "releaseDate": "2026-10-06T20:00:00Z",
       "channel": "development",
