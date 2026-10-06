@@ -1,6 +1,20 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.9.4",
+      "releaseDate": "2026-10-06T06:30:00Z",
+      "channel": "development",
+      "summary": "Erster FINALER Transition-Kandidat (Bestand Alpha.9 -> Alpha.10, Golden-Path-Test). Quellcommit 97b5f52. Ersetzt NICHT 0.9.2-alpha.9.1/.2/.3 (diese sind REJECTED). Keine fachliche DB-Migration. Nicht fuer produktive Kanaele.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Payload-Pruefung: kontrolliertes Unterverzeichnis der Download-Area erlaubt, Escapes abgelehnt",
+        "Startup-Host-Pruefung rein lesend; schreibende Host-Migration nur im Install-Job",
+        "Bootstrap-Voraussetzungen getrennt (BOOTSTRAP_REQUIRED), Helfer-Zustandsordner und ReadWritePaths",
+        "daemon-reload-Preflight liest den echten systemd-Zustand",
+        "Release signiert (dev-2026-09), linux-amd64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.9.3",
       "releaseDate": "2026-10-06T00:40:00Z",
       "channel": "development",
