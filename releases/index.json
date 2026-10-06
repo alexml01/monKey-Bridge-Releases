@@ -1,6 +1,17 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.10.10",
+      "releaseDate": "2026-10-07T01:00:00Z",
+      "channel": "development",
+      "summary": "Alpha.10 RC (Live-Rollback-Nachweis). Quellcommit 2514be3. Ersetzt 0.9.2-alpha.10.9. Nicht fuer produktive Kanaele.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Gemeinsame Rollback-Primitive fuer Agent-Vorgaenger",
+        "Release signiert (dev-2026-09), linux-amd64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.10.9",
       "releaseDate": "2026-10-07T00:00:00Z",
       "channel": "development",
