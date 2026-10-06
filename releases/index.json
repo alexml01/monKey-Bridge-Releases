@@ -1,6 +1,20 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.9.6",
+      "releaseDate": "2026-10-06T08:20:00Z",
+      "channel": "development",
+      "summary": "FINAL Transition-Kandidat (Golden Path, Wiederholung). Quellcommit caac14d. Ersetzt 0.9.2-alpha.9.5: dessen Agent parste die Helfer-Antwort falsch (Fail-open), die Host-Pruefung sah keine Schritte und die Legacy-Regel blieb. 0.9.2-alpha.9.4 und 0.9.2-alpha.9.5 bleiben unveraendert. 0.9.2-alpha.9.1/.2/.3 sind REJECTED. Keine fachliche DB-Migration. Nicht fuer produktive Kanaele.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Host-Pruefung parst die echte Helfer-Antwort {result,error} (Regressionstests)",
+        "Bootstrap-Voraussetzungen getrennt (BOOTSTRAP_REQUIRED, fail closed); Runtime-Migration nur gegatet",
+        "daemon_reload-Pruefung der Agent-Unit; loaded_sandbox verlangt Agent-Start nach Drop-in-Aenderung",
+        "Startup-Host-Pruefung rein lesend; schreibende Migration nur im Install-Job",
+        "Release signiert (dev-2026-09), linux-amd64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.9.5",
       "releaseDate": "2026-10-06T07:40:00Z",
       "channel": "development",
