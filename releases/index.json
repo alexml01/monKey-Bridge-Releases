@@ -1,6 +1,20 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.9.5",
+      "releaseDate": "2026-10-06T07:40:00Z",
+      "channel": "development",
+      "summary": "FINAL Transition-Kandidat (Golden Path). Quellcommit 9bd43f3. Ersetzt 0.9.2-alpha.9.4, dessen Bootstrap-Pruefung (daemon_reload-Pruefung ohne Unit, Neustart-Pruefung) fehlerhaft war. 0.9.2-alpha.9.4 bleibt unveraendert. 0.9.2-alpha.9.1/.2/.3 sind REJECTED. Keine fachliche DB-Migration. Nicht fuer produktive Kanaele.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Host-Voraussetzungen: Bootstrap getrennt von Runtime-Migration (BOOTSTRAP_REQUIRED, fail closed)",
+        "daemon_reload-Pruefung der Agent-Unit; loaded_sandbox verlangt Agent-Start nach Drop-in-Aenderung",
+        "Startup-Host-Pruefung rein lesend; schreibende Migration nur im Install-Job",
+        "Payload-Containment-Korrektur; Snapshot-Vertrag Bridge->Agent (Transition-Variante)",
+        "Release signiert (dev-2026-09), linux-amd64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.9.4",
       "releaseDate": "2026-10-06T06:30:00Z",
       "channel": "development",
