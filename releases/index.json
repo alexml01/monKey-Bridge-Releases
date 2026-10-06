@@ -1,6 +1,17 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.10.7",
+      "releaseDate": "2026-10-06T23:30:00Z",
+      "channel": "development",
+      "summary": "Alpha.10 RC. Quellcommit bb5d98d. Ersetzt 0.9.2-alpha.10.6 (identischer Code, neuer Helfer-Build; dient dem Nachweis der Helfer-Selbstaktualisierung ueber den regulaeren Releasepfad). Nicht fuer produktive Kanaele.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Helfer-Selbstaktualisierung ueber signierte Trust-Chain vor dem Cutover (Nachweis)",
+        "Release signiert (dev-2026-09), linux-amd64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.10.6",
       "releaseDate": "2026-10-06T23:00:00Z",
       "channel": "development",
