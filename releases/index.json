@@ -1,6 +1,20 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.10.6",
+      "releaseDate": "2026-10-06T23:00:00Z",
+      "channel": "development",
+      "summary": "Alpha.10 RC. Quellcommit 1aa9469. Ersetzt 0.9.2-alpha.10.5. Enthaelt: Helfer-Update ueber die signierte Trust-Chain vor dem Cutover; deterministische, idempotente Stilllegung des Legacy-Updaters; Rollback nur ueber eindeutige Release-Identitaet (fail closed). Neue Host-Prerequisites (sudoers-Freigabe Helfer, Legacy-Maskierung) werden durch den einmaligen Bootstrap angelegt. Nicht fuer produktive Kanaele.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Helfer-Selbstaktualisierung aus signiertem Release (install-artifact helper), vor dem Cutover",
+        "Legacy-Updater deterministisch maskiert (Prerequisite), preflight-geprueft",
+        "Manueller Rollback an eindeutige Release-Identitaet (Manifest-Digest, Build, Architektur) gebunden",
+        "Immutable Release Binding, commandId-Idempotenz (atomares Ledger), Helfer-Lock im Zustandsordner",
+        "Release signiert (dev-2026-09), linux-amd64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.10.5",
       "releaseDate": "2026-10-06T21:00:00Z",
       "channel": "development",
