@@ -1,6 +1,18 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.10.9",
+      "releaseDate": "2026-10-07T00:00:00Z",
+      "channel": "development",
+      "summary": "Alpha.10 RC. Quellcommit 5a4c4fe. Ersetzt 0.9.2-alpha.10.7 (gemeinsame Rollback-Primitive: Agent-Vorgaenger wird im manuellen und automatischen Rollback wiederhergestellt, wenn veraendert; Helfer-Restore nur fuer das zuletzt ersetzte Release). Nicht fuer produktive Kanaele.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Gemeinsame Rollback-Primitive fuer Agent-Vorgaenger (manuell + automatisch)",
+        "Helfer-Restore nur fuer das zuletzt ersetzte Release, volle Signatur-/Digest-Pruefung",
+        "Release signiert (dev-2026-09), linux-amd64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.10.7",
       "releaseDate": "2026-10-06T23:30:00Z",
       "channel": "development",
