@@ -448,6 +448,20 @@
         "install-artifact: identische signierte Bytes mit gleicher Version aendern keine Zustandsmarker",
         "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
       ]
+    },
+    {
+      "version": "0.9.2-alpha.10.20",
+      "releaseDate": "2026-10-06T20:15:48Z",
+      "channel": "development",
+      "summary": "Alpha.10.20 Development-RC (linux/amd64 und linux/arm64): Quellcommit 4da2e0e (ML-monkey-bridge). Staging ohne chmod: das setgid-Bit der Staging-Wurzel wird vom Kernel vererbt, Verzeichnis und Payload werden danach gegen die Wurzelgruppe geprueft (fail closed). Linux-Gruppenintegrationstest. Ersetzt 0.9.2-alpha.10.19, dessen Staging-Fix auf dem Pi nicht wirkte. Nicht fuer produktive Kanaele.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "Staging: kein chmod mehr auf dem Staging-Verzeichnis; setgid und Gruppe werden vom Kernel vererbt und danach geprueft",
+        "Linux-Integrationstest: Bridge-Benutzer ohne Mitgliedschaft in der Agent-Gruppe, Payload lesbar fuer die Agent-Gruppe",
+        "Erstaktivierung: activate-initial legt current nur an, wenn keines existiert; entpackte Datei-Digests werden geprueft",
+        "install-artifact: identische signierte Bytes mit gleicher Version aendern keine Zustandsmarker",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
     }
   ]
 }
