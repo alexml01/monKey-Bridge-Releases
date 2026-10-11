@@ -490,6 +490,24 @@
         "Claim-Klartext nur im tmpfs, nicht ueber das Netz lesbar",
         "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
       ]
+    },
+    {
+      "version": "0.9.2-alpha.10.23",
+      "releaseDate": "2026-10-11T18:00:20Z",
+      "channel": "development",
+      "summary": "Alpha.10.23 Development-RC (linux/amd64 und linux/arm64): Quellcommit a60a7ef (ML-monkey-bridge). Behebt das wiederkehrende ~30s-MQTT-Verbindungsflattern gegen OpenRemote vollstaendig (fehlende Selfstatus-Attribute am Bridge-Asset UND an bereits gebundenen Geraeten, fehlendes online=true nach Reconnect, MQTT-Echo faelschlich als Befehl interpretiert), erweitert die Standortzuordnung gemaess Cockpit-Enrollment-Vertrag 1.1.0, korrigiert OpenRemote-Synchronisationsdrift (Raum-/Etagen-Parent) automatisch und behebt einen ungueltigen OpenRemote-Attributnamen bei SNMP-Tabellenwerten. Ersetzt 0.9.2-alpha.10.22. Nicht fuer produktive Kanaele.",
+      "minimumSupportedVersion": "",
+      "features": [
+        "OpenRemote: alle Selfstatus-Attribute des Bridge-eigenen Assets provisioniert (vorher nur 5 von 27) - behebt die eigentliche Ursache des wiederkehrenden Verbindungsabbruchs",
+        "OpenRemote: fehlende bridgeInstanceId/monkeyState an bereits gebundenen Geraete-Assets werden automatisch ergaenzt",
+        "OpenRemote: online=true wird bei jedem (Re-)Connect erneut publiziert, unabhaengig vom Aenderungsfilter",
+        "OpenRemote: UpdateAssetAttributes als Read-Modify-Write - kundenspezifische Attribute werden bei einem Abgleich nicht mehr geloescht",
+        "OpenRemote: echoGuard erkennt eigenes Echo auch bei schnell wechselnden Attributwerten (kein falscher Befehlsalarm mehr)",
+        "OpenRemote: Bridge-Asset folgt automatisch der vom Cockpit zugewiesenen Standortzuordnung (Enrollment Contract 1.1.0), bestehende abweichende Zuordnungen bleiben ohne Autorisierung unangetastet",
+        "OpenRemote: Raum-/Etagen-Parent-Drift wird automatisch korrigiert, ein abweichender Name bleibt weiterhin nur erkannt (nie automatisch ueberschrieben)",
+        "OpenRemote: SNMP-Tabellen-Attributnamen (z.B. raidIndex.1) werden fuer OpenRemote sanitiert",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
     }
   ]
 }
