@@ -1,6 +1,19 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.10.24",
+      "summary": "Claim-Code der lokalen Portal-Ersteinrichtung entfernt, Werks-Administrator admin/admin mit erzwungenem Passwortwechsel (ADR-0008) reaffirmiert und wiederhergestellt.",
+      "features": [
+        "Claim-Code-Mechanismus vollstaendig entfernt (cmd/portal/claim.go, internal/claim, internal/store/claim.go, monkey-claim-console)",
+        "BootstrapFactoryAdminUser() wiederhergestellt: admin/admin nur bei leerer Benutzertabelle (echte Erstinstallation oder Werksreset)",
+        "Server-seitig erzwungener Passwortwechsel (basicAuth-Middleware) ist wieder die alleinige Durchsetzung, ohne vorgeschaltetes Claim-Gate",
+        "Cockpit-Enrollment-Code (Variante A) und manuelle OpenRemote-Anbindung (Variante B) bleiben unveraendert, vollstaendig getrennt vom lokalen Bootstrap",
+        "ADR-0008 aktualisiert: Claim-Code-Abweichung (2026-10-07 bis 2026-10-12) dokumentiert und zurueckgenommen",
+        "Appliance-Dokumentation korrigiert (O-21/O-25/O-26, stale Verweise auf das bereits entfernte devmode-SSH-Gate)",
+        "Zurueckgestellte Produktidee (USB-Hardware-Sicherheitsschluessel fuer physischen Servicezugang) dokumentiert, NICHT implementiert"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.10.11",
       "releaseDate": "2026-10-07T02:00:00Z",
       "channel": "development",
