@@ -1,6 +1,16 @@
 {
   "releases": [
     {
+      "version": "0.9.2-alpha.10.26",
+      "summary": "OpenRemote InitialSnapshot-Fix, echoGuard-Ein/Aus/Ein-Fix, Sanitizer-Regressionstest fuer wolfprot/crossxio - Katalog-Release fuer das Showroom-Bridge-Update (MonKey-RaspClient001).",
+      "features": [
+        "internal/openremote.Backend.Capabilities(): InitialSnapshot=true - Geraete ohne Zustandswechsel werden nach jedem reconcileLoop()/Reconnect wieder an OpenRemote publiziert",
+        "echoGuard-Historie von 60s auf 1s verkuerzt - ein echter zweiter Ein-Befehl kurz nach einem Aus wird nicht mehr faelschlich als eigenes Echo unterdrueckt",
+        "Regressionstest fuer den OpenRemote-Attributname-Sanitizer mit wolfprot.online/crossxio.online/crossxio.lastError (bereits durch Commit a60a7ef abgedeckt, hier erstmals fuer diese Treiber nachgewiesen)",
+        "Enthaelt weiterhin: Claim-Code entfernt/admin-admin-Bootstrap (ADR-0008), crossXio-Routing-Writable-Fix (658d02a)"
+      ]
+    },
+    {
       "version": "0.9.2-alpha.10.24",
       "summary": "Claim-Code der lokalen Portal-Ersteinrichtung entfernt, Werks-Administrator admin/admin mit erzwungenem Passwortwechsel (ADR-0008) reaffirmiert und wiederhergestellt.",
       "features": [
