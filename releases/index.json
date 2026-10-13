@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.11",
+      "summary": "Orphaned-Sync-Fehler erkennbar gemacht + error/isSimulated-Boolean-Typ-Regression behoben (Live-Diagnoseauftrag MONKey Cockpit, 2026-10-13): 5 laengst erledigte, nur noch als Karteileichen in der Sync-Fehlerliste sichtbare Bindungen werden jetzt als Orphaned markiert statt wie aktive Fehler zu wirken; der seit Alpha.9 bei jeder Wertabweichung schreibende Reconcile-Vergleich stufte den Boolean-Typ von 'error' faelschlich auf Text herab - jetzt korrekt als Boolean erkannt.",
+      "features": [
+        "erroredEntity/driftedEntity bekommen ein neues Feld 'orphaned' (true, wenn die zugehoerige canonical Entity in der aktuellen Konfiguration nicht mehr existiert) - rein additiv, keine Loeschung bestehender Bindungs-Zeilen",
+        "canonPropertyWireValue erkennt jetzt zusaetzlich 'error' und 'isSimulated' als Boolean (bisher nur der '.online'-Namenssuffix)",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.10",
       "summary": "system.mute/volume fehlten nach der Erstanlage (Live-Befund Cockpit, 2026-10-13): die system.*-Steuerungsattribute (power/mute/volume) wurden bisher NUR bei der Erstanlage des Endpunkt-Assets geschrieben, nie erneut - ein Connector-Objekt-Cache, das erst nach der Erstanlage vollstaendig wird (z.B. kurz nach einem Neustart), erreichte das bereits angelegte Asset dadurch nie.",
       "features": [
