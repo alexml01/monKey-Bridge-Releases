@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.6",
+      "summary": "allowedValues fuer crossXio-Routing-Attribute - Cockpit-Rueckfrage auf Teil 1: Wire-Format live gegen die echte OpenRemote-Instanz verifiziert (flaches meta.allowedValues, nicht die vom OpenAPI-Schema nahegelegte, bereits bei Min/Max gescheiterte verschachtelte Form).",
+      "features": [
+        "routingSource/routingVideoSource/routingAudioSource/routingUsbSource/routingRs232Source tragen jetzt meta.allowedValues mit den MAC-Adressen aller Encoder desselben crossXio-Systems - dieselbe Kennung wie im Ist-Wert",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.5",
       "summary": "Capability-/Routing-Vertrag Teil 1 (Universelle Geraeteansicht/Capabilities): Boolean-Typisierung fuer alle <connectorType>.online-Reachability-Attribute, avSystemId/avSystemName auf Geraete-Assets, schreibbare crossXio-Routing- und Signalstatus-Attribute.",
       "features": [
