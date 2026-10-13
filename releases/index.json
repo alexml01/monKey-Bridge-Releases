@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.13",
+      "summary": "system.error-Kollision auch im zweiten, live-MQTT-gebundenen Code-Pfad aufgeloest (Live-Nachkontrolle MONKey Cockpit zu Alpha.12): Alpha.12 loeste die Attributkollision nur im REST-basierten Reconcile-Pfad - ein separates, live bei Head/MQTT gebundenes virtuelles Systemgeraet mappte system.error weiterhin unrenamed auf 'error' und ueberschrieb den korrekten Wert bei jeder erkannten Wertaenderung erneut.",
+      "features": [
+        "buildRegistry's virtuelles system-Geraet wendet jetzt dieselbe systemErrorRename-Umbenennung an wie der REST-Pfad (einzige Quelle, keine Duplizierung)",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.12",
       "summary": "error-Attributkollision aufgeloest (Nutzerentscheidung 2026-10-13, nach Root-Cause via MONKey Cockpit) + meta.min/meta.max fuer numerische Attribute (Cockpit Monitoring Data Contract): der Controller-eigene Verbindungsstatus (error/connectorError) und der vom Controller gemeldete AV-System-Sammelfehler (systemError) sind jetzt getrennte Attribute statt sich unter 'error' zu ueberschreiben - rueckwaertskompatibel, keine vorhandenen Fehlermeldungen entfernt.",
       "features": [
