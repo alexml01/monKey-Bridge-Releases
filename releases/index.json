@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.3",
+      "summary": "Host-Migration-Status jetzt auch im Portal sichtbar (Wartungsseite, Karte \"System Agent / Host\") - Folge-Ergaenzung zu 0.9.3-alpha.2, das die Erkennung/API bereits lieferte, aber noch ohne Anzeige fuer einen menschlichen Betrachter.",
+      "features": [
+        "Wartungsseite: dritte Statuszeile \"Host-Migration\" (Bereit/Bootstrap erforderlich/Broker nicht installiert/nicht aktiv/nicht erreichbar/unvollstaendig) mit Klartext-Grund, sichtbar bevor ein Update versucht wird",
+        "Enthaelt weiterhin: Broker-Fehlerklassifizierung und fruehes Fail-Fast-Gate aus 0.9.3-alpha.2",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.2",
       "summary": "Host-Migration-Fehlerklarheit: ein nie installierter/nicht aktiver Broker wird jetzt eindeutig erkannt und gemeldet, statt als irrefuehrendes \"Ausgabe nicht lesbar\" zu erscheinen; frueher Fail-Fast-Check vor dem Download; Broker-Status in GetMaintenanceStatus sichtbar; Hinweis bei abweichender Build/Release-Anzeige nach einer direkten Artefakt-Installation.",
       "features": [
