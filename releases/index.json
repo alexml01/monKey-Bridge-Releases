@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.14",
+      "summary": "RC1: echter Live-Publish-Pfad fuer crossXio-Geraete (Nutzerentscheidung, nach MONKey Cockpit Monitoring Data Contract 1.0). Bisher erreichte jeder crossXio-Attributwert OpenRemote ausschliesslich ueber den periodischen 15-Minuten-Reconcile - Connector.Subscribe war ein reiner, nie feuernder Stub. Jetzt: echte Wertaenderungen werden zeitnah publiziert, UND jedes Attribut wird spaetestens alle 240s (Sicherheitsabstand zu Cockpits 300s-Stale-Schwelle) aufgefrischt, auch ohne Wertaenderung - ohne erfundene Daten bei nicht erreichbaren Geraeten.",
+      "features": [
+        "crossxio.Connector.Subscribe registriert jetzt echte Handler (mirrort internal/connect/edu)",
+        "pendingNotificationsLocked entscheidet pro Poll-Zyklus, ob ein Attribut eine Benachrichtigung ausloest (Wertaenderung ODER ueberschrittenes liveRefreshInterval=240s) - nur fuer tatsaechlich frisch gelesene Objekte, kein erfundener Zustand bei Erreichbarkeitsproblemen",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.13",
       "summary": "system.error-Kollision auch im zweiten, live-MQTT-gebundenen Code-Pfad aufgeloest (Live-Nachkontrolle MONKey Cockpit zu Alpha.12): Alpha.12 loeste die Attributkollision nur im REST-basierten Reconcile-Pfad - ein separates, live bei Head/MQTT gebundenes virtuelles Systemgeraet mappte system.error weiterhin unrenamed auf 'error' und ueberschrieb den korrekten Wert bei jeder erkannten Wertaenderung erneut.",
       "features": [
