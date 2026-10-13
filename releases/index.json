@@ -1,6 +1,18 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.8",
+      "summary": "Backend-Navigation/Aktivierungsstatus/OpenRemote-Sync (Nutzerauftrag 'Backend-Navigation, Aktivierungsstatus und OpenRemote-Synchronisation', 2026-10-13): Root Cause fuer alle 6 fehlerhaften + 1 abweichendes Showroom-Binding bewiesen (verwaiste Eintraege + ein strukturelles OpenRemote-GroupAsset-childAssetType-Problem bei direkt-Etagen-zugeordneten Geraeten), Backend-Umschalt-Knopf-Bug, ThingsBoard-Status-Anzeige, Struktur-Baum-Sync-Fehler-Aggregation.",
+      "features": [
+        "provision.go: ein Geraet mit Parent=floor/building (kein Raum) bekommt eine spezifische, umsetzbare Fehlermeldung statt eines fuer immer wiederholten, garantiert scheiternden OpenRemote-API-Aufrufs - OpenRemotes GroupAsset-childAssetType-Pflichtattribut laesst dort strukturell nie ein ThingAsset zu (live per Bisektionsprobe bewiesen)",
+        "GET /monitor/sync bekommt DriftedEntities (analog zu ErroredEntities) - bisher gab es fuer 'drifted'-Bindings ueberhaupt keine Moeglichkeit, die betroffene Entity zu identifizieren",
+        "Portal: der Aktivieren/Deaktivieren-Knopf eines Backends faellt bei nicht erreichbarer Bridge auf den lokal bereits bekannten, persistierten Zustand zurueck statt faelschlich immer 'Deaktivieren' zu zeigen",
+        "Portal: die ThingsBoard-Seite zeigt jetzt den echten Backend-Status (Configured/Disabled/Connection/ConnectError) statt nur die reine Bridge-Erreichbarkeit - mirrort die bereits korrekte Zabbix-Seite",
+        "Portal: Sync-Fehler im Struktur-Baum werden jetzt bis zu den Elternknoten aggregiert, mit Unterscheidung 'Sync-Fehler' (eigener Fehler) vs. 'Fehler in Unterstruktur' (nur ein Nachfahre betroffen)",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.7",
       "summary": "Kritischer Fix: Fail-Fast-Circuit-Breaker fuer fehlgeschlagenen OpenRemote-/ThingsBoard-Login - Root Cause des Showroom-Update-Rollbacks 0.9.3-alpha.6 (2026-10-13 18:25 CEST).",
       "features": [
