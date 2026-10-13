@@ -1,6 +1,17 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.5",
+      "summary": "Capability-/Routing-Vertrag Teil 1 (Universelle Geraeteansicht/Capabilities): Boolean-Typisierung fuer alle <connectorType>.online-Reachability-Attribute, avSystemId/avSystemName auf Geraete-Assets, schreibbare crossXio-Routing- und Signalstatus-Attribute.",
+      "features": [
+        "Jede <connectorType>.online-Property (universelle Namenskonvention, jeder Connector-Typ) kommt jetzt als echter OpenRemote-Boolean an statt als Text 'true'/'false'",
+        "Neue Attribute avSystemId/avSystemName auf dem Geraete-Asset - Systemzugehoerigkeit sichtbar, ohne ein eigenes System-Asset einzufuehren (room-gebunden und eigenstaendig)",
+        "crossXio: routingSource (generischer Decoder) sowie routingVideoSource/routingAudioSource/routingUsbSource/routingRs232Source (Klassen-Routing-Firmware) jetzt als schreibbare OpenRemote-Attribute mit dem aktuellen Wert - vorher nie provisioniert, obwohl der Connector sie schon laengst unterstuetzt",
+        "crossXio: videoSignalPresent/audioSignalPresent als echte Boolean-Attribute je Encoder",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.4",
       "summary": "Root-Cause-Fund der Live-Abnahme 0.9.3-alpha.3: Mitglieder eigenstaendiger (crossxio_av-)Systeme erreichten die OpenRemote-Provisionierung nie, unabhaengig vom Fix fuer room-gebundene Systeme (Config.StandaloneSystems haengt nie in room.Systems). ThingsBoard provisioniert diese Geraete bereits korrekt - OpenRemote jetzt ebenso.",
       "features": [
