@@ -1,6 +1,18 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.2",
+      "summary": "Host-Migration-Fehlerklarheit: ein nie installierter/nicht aktiver Broker wird jetzt eindeutig erkannt und gemeldet, statt als irrefuehrendes \"Ausgabe nicht lesbar\" zu erscheinen; frueher Fail-Fast-Check vor dem Download; Broker-Status in GetMaintenanceStatus sichtbar; Hinweis bei abweichender Build/Release-Anzeige nach einer direkten Artefakt-Installation.",
+      "features": [
+        "internal/hostmigration: Dial-Fehler zum Broker-Socket werden klassifiziert (nicht installiert/nicht aktiv/sonstiger Fehler) statt generisch \"nicht erreichbar\"",
+        "cmd/monkey-system-agent: ein Lauffehler beim Aufruf des Host-Migrations-Helfers wird nie mehr als JSON-Lesefehler getarnt - die eigentliche Ursache bleibt sichtbar",
+        "cmd/monkey-system-agent: neues, rein lesendes Fail-Fast-Gate vor jedem Release-Download - ein bekannter harter Host-Migrations-Fehler bricht ab, bevor Bandbreite/Zeit verschwendet wird",
+        "GetMaintenanceStatus liefert zusaetzlich den Host-Migrations-Zustand (ok/bootstrap_required/broker_not_installed/broker_down/...), sichtbar im Portal bevor ein Update versucht wird",
+        "Portal-Wartungsseite: Hinweis, wenn \"Installiert\" und \"Build / Release\" auseinanderlaufen (Ursache: Artefakt-Installation ausserhalb des Katalog-Update-Pfads)",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.1",
       "summary": "Erster Phase-19-Release: Root-Cause-Fix fuer die OpenRemote-Geraete-Provisionierung (crossXio-Systemmitglieder ohne rc-Objekt-Namespace wurden nie provisioniert, nicht der Attribut-Sanitizer), automatische Schema-Erweiterung bestehender Assets, Fehlersichtbarkeit fuer Backend-Sync-Probleme im Portal, Breadcrumb-CSS-Fix auf allen Seiten.",
       "features": [
