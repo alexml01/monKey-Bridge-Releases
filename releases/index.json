@@ -1,6 +1,17 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.9",
+      "summary": "OpenRemote: Geraete-Provisionierung, Live-Monitoring und Reconciliation (kritischer CUE-Auftrag, 2026-10-13): controlCUE-basic bekommt endlich ein eigenes OpenRemote-Asset, system.power/mute/volume werden live gesteuert, und Reachability-Attribute (online-Zustand, Zeitstempel) aktualisieren sich jetzt dauerhaft statt nach der Erstanlage einzufrieren.",
+      "features": [
+        "provisionSystemEndpointDevice: jeder EDU-/Crestron-Endpunkt-Controller (z.B. controlCUE-basic) bekommt jetzt ein eigenes OpenRemote-Asset mit echter Identitaet (Hersteller/Modell/Seriennummer/Firmware aus dem reservierten 'controller'-Namespace) - bringt OpenRemote auf denselben Stand wie ThingsBoard (bereits 2026-09-29 geloest)",
+        "system.power/system.mute/system.volume: ein virtuelles 'system'-Geraet wird jetzt ueber die bestehende registerAssets/mapping.Build/device.New-Kette registriert - vorher nirgends in der Bridge registriert (weder Readback noch Schreibweiterleitung)",
+        "role=system_controller-Attribut auf dem Endpunkt-Asset (Cockpit-Spezifikation)",
+        "Root-Cause-Fix (live gemeldet: '22 von 27 Assets veraltet'): healMissingCockpitDeviceAttrs schrieb ein bereits vorhandenes Reachability-Attribut (crossXio/WolfVision/SNMP online-Zustand, Zeitstempel) bisher NUR bei Abwesenheit - nach der Erstanlage nie wieder aktualisiert. Jetzt wird bei echter Wertabweichung ebenfalls geschrieben",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.8",
       "summary": "Backend-Navigation/Aktivierungsstatus/OpenRemote-Sync (Nutzerauftrag 'Backend-Navigation, Aktivierungsstatus und OpenRemote-Synchronisation', 2026-10-13): Root Cause fuer alle 6 fehlerhaften + 1 abweichendes Showroom-Binding bewiesen (verwaiste Eintraege + ein strukturelles OpenRemote-GroupAsset-childAssetType-Problem bei direkt-Etagen-zugeordneten Geraeten), Backend-Umschalt-Knopf-Bug, ThingsBoard-Status-Anzeige, Struktur-Baum-Sync-Fehler-Aggregation.",
       "features": [
