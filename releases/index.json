@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.7",
+      "summary": "Kritischer Fix: Fail-Fast-Circuit-Breaker fuer fehlgeschlagenen OpenRemote-/ThingsBoard-Login - Root Cause des Showroom-Update-Rollbacks 0.9.3-alpha.6 (2026-10-13 18:25 CEST).",
+      "features": [
+        "Root Cause: ein voruebergehender Netzwerkausfall (\"no route to host\" zu openremote.medialogic-net.de/thingsboard.medialogic-net.de) traf auf fehlendes Fail-Fast-Verhalten in internal/openremote.Client.token() und internal/thingsboard.Client.token() - jede der ueber 20 crossXio-Geraete und ~30 ThingsBoard-Entities loeste ihren EIGENEN vollen Login-Versuch mit vollem HTTP-Timeout aus, zusammen ueber 5 Minuten, weit ueber dem 2-Minuten-Readiness-Budget (RELEASE_VALIDATION) - der automatische Rollback war in diesem Zustand korrekt, aber durch eine vermeidbare Verzoegerung ausgeloest",
+        "Fix: ein fehlgeschlagener Login bleibt fuer ein kurzes Cooldown-Fenster (5s) sticky - weitere token()-Aufrufe in diesem Fenster geben sofort den gecachten Fehler zurueck statt erneut den vollen Netzwerk-Timeout abzuwarten. Kein Einfluss auf den Erfolgsfall, keine neue Retry-/Backoff-Architektur, die bestehende synchrone Provisionierungs-vor-Readiness-Architektur bleibt unveraendert",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.6",
       "summary": "allowedValues fuer crossXio-Routing-Attribute - Cockpit-Rueckfrage auf Teil 1: Wire-Format live gegen die echte OpenRemote-Instanz verifiziert (flaches meta.allowedValues, nicht die vom OpenAPI-Schema nahegelegte, bereits bei Min/Max gescheiterte verschachtelte Form).",
       "features": [
