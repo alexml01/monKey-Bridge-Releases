@@ -1,6 +1,16 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.12",
+      "summary": "error-Attributkollision aufgeloest (Nutzerentscheidung 2026-10-13, nach Root-Cause via MONKey Cockpit) + meta.min/meta.max fuer numerische Attribute (Cockpit Monitoring Data Contract): der Controller-eigene Verbindungsstatus (error/connectorError) und der vom Controller gemeldete AV-System-Sammelfehler (systemError) sind jetzt getrennte Attribute statt sich unter 'error' zu ueberschreiben - rueckwaertskompatibel, keine vorhandenen Fehlermeldungen entfernt.",
+      "features": [
+        "connectorError: neues, additives Attribut mit demselben Wert wie 'error' (Connector-/Kommunikationsgesundheit, device.Info) - 'error' bleibt unveraendert bestehen",
+        "systemError: das rc-Objekt 'system.error' (AV-System-Sammelfehler) bekommt ueber mapping.Build's bestehenden rename-Mechanismus einen eigenen Namen statt mit 'error' zu kollidieren",
+        "buildWireAttribute schreibt jetzt ein flaches meta.min/meta.max, wenn Attribute.Min/Max gesetzt sind (z.B. volume: 0-100) - vorher wurden diese Felder trotz vorhandener Daten nie in die OpenRemote-Wire-Form uebernommen",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.11",
       "summary": "Orphaned-Sync-Fehler erkennbar gemacht + error/isSimulated-Boolean-Typ-Regression behoben (Live-Diagnoseauftrag MONKey Cockpit, 2026-10-13): 5 laengst erledigte, nur noch als Karteileichen in der Sync-Fehlerliste sichtbare Bindungen werden jetzt als Orphaned markiert statt wie aktive Fehler zu wirken; der seit Alpha.9 bei jeder Wertabweichung schreibende Reconcile-Vergleich stufte den Boolean-Typ von 'error' faelschlich auf Text herab - jetzt korrekt als Boolean erkannt.",
       "features": [
