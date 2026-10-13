@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.10",
+      "summary": "system.mute/volume fehlten nach der Erstanlage (Live-Befund Cockpit, 2026-10-13): die system.*-Steuerungsattribute (power/mute/volume) wurden bisher NUR bei der Erstanlage des Endpunkt-Assets geschrieben, nie erneut - ein Connector-Objekt-Cache, das erst nach der Erstanlage vollstaendig wird (z.B. kurz nach einem Neustart), erreichte das bereits angelegte Asset dadurch nie.",
+      "features": [
+        "provisionSystemEndpointDevice: derselbe frische namespaceAttributes(system, ...)-Aufruf laeuft jetzt auch im Reconcile-Refresh-Zweig (healMissingCockpitDeviceAttrs/liveRefreshAttrs), nicht nur bei der Erstanlage - schreibt bei Abwesenheit ODER Wertabweichung",
+        "discovered/runningCfg werden jetzt einmal pro Aufruf berechnet und von Erstanlage- UND Reconcile-Zweig geteilt",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.9",
       "summary": "OpenRemote: Geraete-Provisionierung, Live-Monitoring und Reconciliation (kritischer CUE-Auftrag, 2026-10-13): controlCUE-basic bekommt endlich ein eigenes OpenRemote-Asset, system.power/mute/volume werden live gesteuert, und Reachability-Attribute (online-Zustand, Zeitstempel) aktualisieren sich jetzt dauerhaft statt nach der Erstanlage einzufrieren.",
       "features": [
