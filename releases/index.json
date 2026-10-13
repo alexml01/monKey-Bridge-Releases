@@ -1,6 +1,16 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.4",
+      "summary": "Root-Cause-Fund der Live-Abnahme 0.9.3-alpha.3: Mitglieder eigenstaendiger (crossxio_av-)Systeme erreichten die OpenRemote-Provisionierung nie, unabhaengig vom Fix fuer room-gebundene Systeme (Config.StandaloneSystems haengt nie in room.Systems). ThingsBoard provisioniert diese Geraete bereits korrekt - OpenRemote jetzt ebenso.",
+      "features": [
+        "cmd/bridge/provision.go: provisionStandaloneDevices schliesst ein Geraet nicht mehr aus, wenn seine einzige Relation zu einem eigenstaendigen (crossxio_av-)System zeigt - dieselbe sanitisierte kanonische Reachability-Property-Quelle wie jedes andere Standalone-Geraet",
+        "Live auf der Showroom-Bridge bestaetigt: 18/21 Geraete eines room-gebundenen crossXio-Systems bereits durch 0.9.3-alpha.1 neu angelegt, die verbleibenden 3 Geraete (eigenstaendiges System) werden mit diesem Release erreicht",
+        "Dokumentiert, nicht automatisch bereinigt: 5 verwaiste backend_bindings-Eintraege fuer laengst aus der Konfiguration geloeschte Entitaeten (4 Geraete, 1 Etage) - unabhaengig von diesem Fix, siehe Run-Record",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.3",
       "summary": "Host-Migration-Status jetzt auch im Portal sichtbar (Wartungsseite, Karte \"System Agent / Host\") - Folge-Ergaenzung zu 0.9.3-alpha.2, das die Erkennung/API bereits lieferte, aber noch ohne Anzeige fuer einen menschlichen Betrachter.",
       "features": [
