@@ -763,6 +763,19 @@
         "Vollregression (go vet + go test -race) fuer das gesamte Repository gruen (1 bekannter, vom Basisstand unabhaengiger Flaky-Test unter -race separat vorgemerkt)",
         "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.24",
+      "summary": "Phase 19 - Stabilitaetsrelease nach Live-Vorfall MonKey-RaspClient001 (Quellcommit 866ce90, ML-monkey-bridge): Struktur-Reconcile seit 11:54 blockiert, Heartbeat seit 12:05 eingefroren, nachgewiesen auf einen unbegrenzt wartenden mqtt.Client.Publish()-Aufruf und ein unbegrenzt wartendes buildControllersTimed() zurueckgefuehrt. mqtt.Client.Publish() wartet jetzt hoechstens PublishTimeout (10s, QoS 0 und QoS 1 gleichermassen) statt unbegrenzt - liefert bei Ueberschreitung einen expliziten Fehler, nie eine falsche Erfolgsmeldung. buildControllersTimed() wartet jetzt hoechstens buildOverallDeadline (90s) auf ALLE Geraete zusammen - ein einzelnes nicht antwortendes Geraet wird isoliert als eigener Fehler gemeldet, blockiert aber nicht mehr den gesamten Reconcile; der naechste Reconcile-Versuch findet unabhaengig davon regulaer statt, mit frischem Scheduler. Neuer, vom Reconcile unabhaengiger monkeyState-Republish-Takt (300s) schliesst die Luecke, dass der volle Je-Geraet-Republish bisher ausschliesslich an reconcileLoop/Reload/Reconnect gebunden war - betrifft insbesondere indirekte CUE-Geraete, deren lokale Persistenz seit Alpha.23 zwar aktuell ist, aber ohne diesen Takt nie erneut an OpenRemote publiziert wurde. Neuer Goroutine-Dump-Endpunkt (/debug/pprof/*) auf dem bereits bestehenden, ausschliesslich lokal gebundenen Admin-Mux fuer kuenftige Diagnosen ohne Prozessabbruch.",
+      "features": [
+        "internal/mqtt/client.go: Client.Publish() nutzt token.WaitTimeout(PublishTimeout, Default 10s) statt token.Wait() - Root Cause des eingefrorenen Heartbeats behoben, neuer PublishTimeoutCount-Stats-Zaehler",
+        "cmd/bridge/build_timed.go: buildOverallDeadline (90s) begrenzt das Gesamt-Warten von buildControllersTimed() - ein haengendes Geraet blockiert den Reconcile nicht mehr dauerhaft",
+        "cmd/bridge/monkeystate_republish.go: neuer, vom Reconcile unabhaengiger 300s-Takt - ruft die bestehende publishCockpitDeviceStatesNow() auf, keine neue Geraeteidentitaet/kein neues Asset",
+        "cmd/bridge/admin_pprof.go: /debug/pprof/* auf dem bereits bestehenden, ausschliesslich auf 127.0.0.1 gebundenen Admin-Mux - kein neuer Listener, keine neue Angriffsflaeche",
+        "Sync-Fehler loesen sich nach Wiederaufnahme des Reconcile automatisch auf (bestehendes Verhalten, durch neue Tests abgesichert)",
+        "Vollregression (go vet + go test -race) fuer das gesamte Repository gruen, inklusive des zuvor als Flaky-Test ausgewiesenen cmd/portal-Tests (diesmal ebenfalls gruen)",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
     }
   ]
 }
