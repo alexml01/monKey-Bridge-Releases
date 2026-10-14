@@ -776,6 +776,18 @@
         "Vollregression (go vet + go test -race) fuer das gesamte Repository gruen, inklusive des zuvor als Flaky-Test ausgewiesenen cmd/portal-Tests (diesmal ebenfalls gruen)",
         "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.25",
+      "summary": "Phase 19 - Backend-Einstellungen/Enrollment-Ueberarbeitung und OpenRemote-Schreibpfad-Haertung (Quellcommits 0189caf / b688e8d / 4064255, ML-monkey-bridge). Cockpit-Basis-Adresse ist jetzt eine persistierte, live wirksame Portal-Einstellung statt nur eines Start-Flags, mit Speichern + Verbindung testen (GET /healthz). GET /backend zeigt eine echte Uebersicht aller Backend-Anbindungen PLUS der Cockpit-Verbindung statt nur auf ThingsBoard umzuleiten. Enrollment Contract 1.1.0 Standortzuordnung (war bereits produktiv) ist jetzt auch im Portal sichtbar. OpenRemote-Attribut-Schreiben bewahrt jetzt fremde meta-Schluessel (z.B. Cockpits meta.storeDataPoints fuer zentral geschaltete Historisierung) statt sie bei jedem Reconcile zu loeschen. Die sechs Bridge-Systemtelemetrie-Attribute (devicesTotal/devicesOnline/devicesOffline/devicesStale/backendSyncIssues/cpuTemperatureCelsius) werden jetzt bei der Asset-Erstellung UND bei jedem regulaeren Reconcile eines bereits bestehenden Bridge-Assets deklariert - vorher fehlte das, OpenRemote lehnte den periodischen Schreibversuch ab und schloss dabei die MQTT-Session (live auf der Dev-VM beobachtet, wiederkehrend alle 1-2 Minuten, AttributeRef cpuTemperatureCelsius/devicesTotal).",
+      "features": [
+        "cmd/portal, internal/store: portal.cockpit_base_url persistiert die Cockpit-Adresse, Formular unter Einstellungen -> MONKey Cockpit mit Speichern + Verbindung testen (GET {base}/healthz)",
+        "cmd/portal: GET /backend zeigt eine echte, rein lesende Uebersicht aller Backend-Anbindungen (ThingsBoard/Zabbix/OpenRemote) PLUS der MONKey-Cockpit-Verbindung",
+        "cmd/portal: Standortzuordnung aus Enrollment Contract 1.1.0 (assigned/no-site/site-without-asset) jetzt unter Einstellungen -> MONKey Cockpit sichtbar",
+        "internal/openremote: mergeForeignMeta() bewahrt fremde meta-Schluessel (z.B. Cockpits meta.storeDataPoints) beim Schreiben eines eigenen Attributs, statt meta komplett neu aufzubauen",
+        "cmd/bridge: devicesTotal/devicesOnline/devicesOffline/devicesStale/backendSyncIssues/cpuTemperatureCelsius jetzt Teil des Bridge-Asset-Attributsatzes (Erstanlage UND regulaerer Reconcile eines bestehenden Assets)",
+        "Vollregression: go vet clean, go build clean, gezielte -race-Laeufe gruen (internal/openremote, internal/selfstatus, betroffene cmd/bridge-Tests), neuer Regressionstest fuer die Reconcile-Nachruestung bei bereits bekannten Assets"
+      ]
     }
   ]
 }
