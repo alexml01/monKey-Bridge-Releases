@@ -1,6 +1,17 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.21",
+      "summary": "Phase 19 - E2E-Diagnose-Korrekturen (gemeinsam mit monKey Cockpit, Live- Showroom-Messung): (1) indirekte EDU-Namespace-Kind-Geraete (Display1, HDMI-KVM-Matrix) persistieren jetzt ihren Laufzeitzustand (vorher dauerhaft 'initializing/unknown', da kein eigener Connector = kein OnConnectionChange-Hook); (2) device_runtime_state (Quelle fuer monkeyState.observedAt/quality/state) wird jetzt alle 180s periodisch persistiert statt nur bei einem Erreichbarkeits-Wechsel oder beim naechsten vollen 15-Minuten-Reconcile - von Cockpit unabhaengig per 12-Proben-Messung bestaetigt (observedAt schritt vorher nur alle 15 min fort, identisch bei CUE/crossXio/Cynap). Enthaelt ausserdem die vorherige Nachkorrektur (alpha.17-20): echte Root-Cause-Korrektur des Bind-Fehlerpfads in wireBackend() (ein einzelner Attribut-Bind-Fehler blockiert nicht mehr alle weiteren Bindings) sowie den vollen Phase-19-Monitoring-Scheduler-Umfang (siehe Eintraege 0.9.3-alpha.17/18/19/20).",
+      "features": [
+        "cmd/bridge/runtime.go: persistIndirectChildRuntimeState() - indirekte Kind-Geraete persistieren jetzt bei belegtem Health-Verdikt (healthy->online, fault->degraded, ExpectedOffline->offline)",
+        "cmd/bridge/build.go: wrapOnPollObservedWithPeriodicPersist() - device_runtime_state wird fuer EDU/WolfVision/crossXio jetzt alle 180s periodisch persistiert, unabhaengig von Erreichbarkeits-Wechseln",
+        "docs/contracts/monitoring-data-contract-1.0.md + .vectors.json: Klarstellung zum online=true-Republish bei jedem technischen MQTT-Reconnect, abgestimmt mit monKey Cockpit (uptimeS jetzt vertragsrelevant fuer connectedSince)",
+        "5 neue Regressionstests",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.19",
       "summary": "Zentraler Monitoring-Scheduler, Phase 19 - echte Root-Cause-Korrektur: 0.9.3-alpha.17/alpha.18 wurden beim Live-Rollout auf dem Dev-VM jeweils automatisch zurueckgerollt (monkey-release-recovery, unbestaetigte Transaktion nach 5 Minuten). Die in alpha.18 eingefuehrte 2ms-Subscribe-Pacing-Pause loeste das Problem NICHT (dreimal in Folge reproduziert, exakt an derselben Stelle, mit und ohne Pause). Tatsaechliche Ursache: cmd/bridge/wire.go's wireBackend() brach bei JEDEM einzelnen OpenRemote-Subscribe-Fehler (z.B. ein vom MQTT-Client selbst binnen derselben Sekunde automatisch aufgeloester transienter Reconnect) die GESAMTE Bind-Schleife fatal ab - jedes WEITERE Attribut JEDES WEITEREN Assets blieb dadurch fuer den Rest des Prozesslaufs komplett unangebunden. Fix: ein fehlgeschlagener Bind() wird jetzt geloggt, die Schleife faehrt mit dem naechsten Attribut fort - derselbe bereits bestehende 'ein einzelner Fehler darf nicht alles blockieren'-Grundsatz, jetzt konsequent auch hier angewendet. Inhaltlich sonst identisch mit 0.9.3-alpha.17/18 (siehe dortige Eintraege fuer die vollstaendige Feature-Liste dieses Runs).",
       "features": [
