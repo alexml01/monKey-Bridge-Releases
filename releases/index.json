@@ -749,6 +749,20 @@
         "Vollregression (go vet + go test -race) fuer cmd/bridge, cmd/portal, internal/openremote, internal/reachability gruen",
         "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.23",
+      "summary": "Phase 19 - OpenRemote-Reconciliation: bewusste Loeschungen, indirekte Geraete, Sync-Fehler (Quellcommit b82b409, ML-monkey-bridge). Indirekte CUE-Geraete (Display1/HDMI-KVM/Touchpanel) bekommen jetzt alle 180s einen echten Runtime-State statt nur bei Reload/On-Demand. Neue persistente Loeschsynchronisation gegen OpenRemote: lokal entfernte Geraete werden als Loeschkandidaten erkannt (Eigentuemerschaft per monkeyBridgeInstanceId vor jeder Loeschung geprueft, Retry mit Backoff, nie automatische Massenbereinigung - unbestaetigte historische Ghost-Kandidaten erfordern eine explizite Bestaetigung im Portal unter /backend/openremote/deletions). Kuenftige Portal-Loeschungen (einzeln/Bulk/Dubletten/AV-System) erzeugen automatisch einen sofort bestaetigten Loeschauftrag; geteilte Geraete bleiben bei einer AV-System-Loeschung unberuehrt. Aktive und historische (verwaiste) Sync-Fehler werden in der Monitoring-Ansicht jetzt getrennt ausgewiesen statt alle als aktive Stoerung zu zaehlen.",
+      "features": [
+        "cmd/bridge/indirect_child_persist.go: periodischer (180s) Takt fuer eduIndirectChildProperties/persistIndirectChildRuntimeState, vorher nur bei Reload/On-Demand",
+        "internal/store: backend_sync_queue additiv um bridge_instance_id/triggered_by/classification/confirmed_at erweitert - persistente Loeschauftraege auf Basis der bestehenden Job-Architektur",
+        "cmd/bridge/deletion_sync.go: eigener 5-Minuten-Takt - findet verwaiste OpenRemote-Bindungen, verifiziert Eigentuemerschaft (monkeyBridgeInstanceId) unmittelbar vor jeder Loeschung frisch, Retry mit Backoff (internal/cockpitenroll.Backoff)",
+        "cmd/portal/deletion_sync_hooks.go: kuenftige Portal-Loeschungen (Einzel/Bulk/Dubletten/AV-System) erzeugen sofort bestaetigte Loeschauftraege, Shared-Geraete bei AV-System-Loeschung unberuehrt",
+        "cmd/portal: neue Seite /backend/openremote/deletions (admin-only) - unbestaetigte Loeschkandidaten erfordern explizite Bestaetigung, fehlgeschlagene Jobs koennen kontrolliert erneut versucht werden",
+        "cmd/portal/handlers_openremote.go: Sync-Fehler-Zaehler in 'Aktive Fehler'/'Historisch (verwaist)' aufgeteilt (bestehendes 'orphaned'-Feld der Bridge, bisher nicht ausgewertet)",
+        "Vollregression (go vet + go test -race) fuer das gesamte Repository gruen (1 bekannter, vom Basisstand unabhaengiger Flaky-Test unter -race separat vorgemerkt)",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
     }
   ]
 }
