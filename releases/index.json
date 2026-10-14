@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.16",
+      "summary": "Zentraler Monitoring-Scheduler, Phase D: WolfVision als zweiter Referenztreiber an pollshared.RefreshTracker angebunden (identisches Muster wie EDU in Alpha.15). WolfVision-Attribute werden jetzt spaetestens alle 180s aufgefrischt, auch ohne Wertaenderung. Bestehende WolfVision-Mechanismen (Poll-Takt 30s, serieller FIFO-Scheduler, Backoff/Jitter, Subscribe, SET->ACK->GET-Write-Verifikation, Publishing-Pfad) bleiben unveraendert. crossXio (RC1) und EDU nicht erneut angefasst.",
+      "features": [
+        "wolfprot.Connector.liveRefresh (180s Standardintervall), verdrahtet in applyObjects",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.15",
       "summary": "Zentraler Monitoring-Scheduler, Phase C: gemeinsames Helper-Package (internal/connect/pollshared.RefreshTracker, extrahiert aus crossXios RC1-Mechanismus) + EDU/CUE als erster Referenztreiber. EDU-Attribute werden jetzt spaetestens alle 180s aufgefrischt, auch ohne Wertaenderung - bisher nur beim 15-Minuten-Reconcile. Bestehende EDU-Mechanismen (Poll-Takt, Jitter, Backoff, Subscribe, Command/Write, Publishing-Pfad) bleiben unveraendert.",
       "features": [
