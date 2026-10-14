@@ -1,6 +1,16 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.15",
+      "summary": "Zentraler Monitoring-Scheduler, Phase C: gemeinsames Helper-Package (internal/connect/pollshared.RefreshTracker, extrahiert aus crossXios RC1-Mechanismus) + EDU/CUE als erster Referenztreiber. EDU-Attribute werden jetzt spaetestens alle 180s aufgefrischt, auch ohne Wertaenderung - bisher nur beim 15-Minuten-Reconcile. Bestehende EDU-Mechanismen (Poll-Takt, Jitter, Backoff, Subscribe, Command/Write, Publishing-Pfad) bleiben unveraendert.",
+      "features": [
+        "internal/connect/pollshared.RefreshTracker: wiederverwendbare Publish-Timing-Entscheidung (Wertaenderung ODER Intervall ueberschritten), erzeugt nie selbst Werte/Zeitstempel",
+        "EDU-Integration: neues Feld Connector.liveRefresh (180s Standardintervall), verdrahtet in applyObjects und patchSyntheticOnline",
+        "Waehrend der Implementierung gefundener und behobener Regressionsfall: die allererste Beobachtung eines Schluessels (z.B. direkt nach Subscribe) darf nicht sofort feuern (haette den 2026-09-11 behobenen EDU-Selbst-Echo-Bug reproduziert)",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.14",
       "summary": "RC1: echter Live-Publish-Pfad fuer crossXio-Geraete (Nutzerentscheidung, nach MONKey Cockpit Monitoring Data Contract 1.0). Bisher erreichte jeder crossXio-Attributwert OpenRemote ausschliesslich ueber den periodischen 15-Minuten-Reconcile - Connector.Subscribe war ein reiner, nie feuernder Stub. Jetzt: echte Wertaenderungen werden zeitnah publiziert, UND jedes Attribut wird spaetestens alle 240s (Sicherheitsabstand zu Cockpits 300s-Stale-Schwelle) aufgefrischt, auch ohne Wertaenderung - ohne erfundene Daten bei nicht erreichbaren Geraeten.",
       "features": [
