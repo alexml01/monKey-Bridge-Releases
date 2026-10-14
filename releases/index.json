@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.18",
+      "summary": "Zentraler Monitoring-Scheduler, Phase 19 - Nachkorrektur: 0.9.3-alpha.17 wurde beim Live-Rollout auf dem Dev-VM zweimal in Folge automatisch zurueckgerollt (monkey-release-recovery, unbestaetigte Transaktion nach 5 Minuten), weil der OpenRemote-MQTT-Subscribe-Burst beim Backend-Binding (cmd/bridge/wire.go wireBackend(), schon vorbestehend, ohne jede Pause zwischen Subscribe-Aufrufen) durch die in alpha.17 von 27 auf 33 erweiterten Bridge-Self-Status-Attribute reproduzierbar ueber eine Zuverlaessigkeitsgrenze getrieben wurde. Fix: subscribeBurstPacing=2ms zwischen den Subscribe-Aufrufen - genau das vom Auftrag selbst geforderte 'Jitter, begrenzte Parallelitaet, keine Startstuerme'. Inhaltlich sonst identisch mit 0.9.3-alpha.17 (siehe dortiger Eintrag fuer die vollstaendige Feature-Liste dieses Runs).",
+      "features": [
+        "cmd/bridge/wire.go: subscribeBurstPacing (2ms) zwischen den OpenRemote-Subscribe-Aufrufen in wireBackend()",
+        "Fix per go test -race verifiziert (keine Regression); Live-Abnahme auf dem Dev-VM erfolgt direkt im Anschluss an diese Veroeffentlichung",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.17",
       "summary": "Zentraler Monitoring-Scheduler, Phase 19 - Vollstaendige Freigabe: crossXio/EDU/WolfVision-Live-Refresh zentral ueber config.MonitoringConfig konfigurierbar (Portal: Einstellungen -> Monitoring), ohne die bereits getestete RC1/Phase-C/Phase-D-Vergleichslogik anzufassen. SNMP/ping/http/https/tcp-Reachability-Connectoren erhalten denselben zentralen Intervall-Fallback, ohne explizite Connector-eigene Intervalle zu ueberschreiben. canon.Property.ObservedAt (additiv) unterscheidet jetzt die tatsaechliche Geraetebeobachtung vom reinen Publish-Zeitpunkt, durchgaengig in allen vier Produzenten verdrahtet. Bridge-Self-Telemetrie um devicesTotal/Online/Offline/Stale/backendSyncIssues/cpuTemperatureCelsius erweitert - backendSyncIssues trennt die Backend-Sync-Qualitaet bewusst vom reinen Beobachtungs-Heartbeat. Neuer periodischer BrightSign-Connector (internal/connect/brightsignconn, Connector-Ebene, noch ohne volle cmd/bridge-Geraetetyp-Integration). Crestron wird bereits vollstaendig ueber den bestehenden EDU-Connector bedient (keine separate Arbeit noetig). Lasttest bei ~25/100/~250 simulierten Geraeten dokumentiert sublineares Goroutine-/Speicherwachstum und flache Antwortzeit. Drei vorbestehende, von diesem Auftrag unabhaengige Data Races in Test-Fixtures (cmd/portal) unter Race Detector gefunden und behoben.",
       "features": [
