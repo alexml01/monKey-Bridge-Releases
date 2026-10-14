@@ -735,6 +735,20 @@
         "OpenRemote: SNMP-Tabellen-Attributnamen (z.B. raidIndex.1) werden fuer OpenRemote sanitiert",
         "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.22",
+      "summary": "Phase 19 - Monitoringvertrag vervollstaendigen (generische Reachability, BrightSign, getrennte Intervalle): Quellcommit f3194c9 (ML-monkey-bridge). Generische Reachability-Hooks (OnConnectionChange/OnPollObserved) fuer ping/http/https/tcp/snmp - jedes regulaer ueberwachte Geraet bekommt jetzt einen eigenen device_runtime_state-Eintrag statt dauerhaft devicestate.Unknown. BrightSign vollstaendig in die cmd/bridge-Geraeteregistrierung integriert (Discovery/Canonical Properties/Reachability/Backend-Publish). DiagnosticsInterval (300s) und InventoryInterval (900s) sind jetzt beide echt unabhaengig vom 15-Minuten-Struktur-Reconcile (periodischer Diagnose-Publish ueber PatchAssetAttributesByID, nur fuer bereits provisionierte Geraete). Portal-Konfiguration (Einstellungen -> Monitoring) fuer beide neuen Intervalle.",
+      "features": [
+        "internal/reachability: OnConnectionChange/OnPollObserved-Hooks fuer SNMP/ICMP/HTTP/HTTPS/TCP",
+        "cmd/bridge: wireReachabilityRuntimeStatePersistence() - periodischer device_runtime_state-Eintrag je ueberwachtem Geraet",
+        "BrightSign: Driver=='brightsign' vollstaendig in buildOneController/registerBrightSignControllers verdrahtet, eigene Canonical Properties",
+        "internal/openremote: PatchAssetAttributesByID (liest Name/Typ/Parent per GetAsset frisch nach)",
+        "cmd/bridge/diagnostics_publish.go: eigener Timer/Stop-Kanal, publiziert Diagnose-Properties unabhaengig vom reconcileLoop",
+        "internal/config.MonitoringConfig: DiagnosticsInterval/InventoryInterval konfigurierbar, Portal-UI erweitert",
+        "Vollregression (go vet + go test -race) fuer cmd/bridge, cmd/portal, internal/openremote, internal/reachability gruen",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
     }
   ]
 }
