@@ -1,6 +1,16 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.19",
+      "summary": "Zentraler Monitoring-Scheduler, Phase 19 - echte Root-Cause-Korrektur: 0.9.3-alpha.17/alpha.18 wurden beim Live-Rollout auf dem Dev-VM jeweils automatisch zurueckgerollt (monkey-release-recovery, unbestaetigte Transaktion nach 5 Minuten). Die in alpha.18 eingefuehrte 2ms-Subscribe-Pacing-Pause loeste das Problem NICHT (dreimal in Folge reproduziert, exakt an derselben Stelle, mit und ohne Pause). Tatsaechliche Ursache: cmd/bridge/wire.go's wireBackend() brach bei JEDEM einzelnen OpenRemote-Subscribe-Fehler (z.B. ein vom MQTT-Client selbst binnen derselben Sekunde automatisch aufgeloester transienter Reconnect) die GESAMTE Bind-Schleife fatal ab - jedes WEITERE Attribut JEDES WEITEREN Assets blieb dadurch fuer den Rest des Prozesslaufs komplett unangebunden. Fix: ein fehlgeschlagener Bind() wird jetzt geloggt, die Schleife faehrt mit dem naechsten Attribut fort - derselbe bereits bestehende 'ein einzelner Fehler darf nicht alles blockieren'-Grundsatz, jetzt konsequent auch hier angewendet. Inhaltlich sonst identisch mit 0.9.3-alpha.17/18 (siehe dortige Eintraege fuer die vollstaendige Feature-Liste dieses Runs).",
+      "features": [
+        "cmd/bridge/wire.go: ein einzelner Attribut-Bind-Fehler blockiert nicht mehr alle weiteren Bindings (continue statt return)",
+        "Neuer Regressionstest TestWireBackend_SingleAttributeBindFailureDoesNotBlockOtherAttributes",
+        "subscribeBurstPacing (2ms, aus alpha.18) bleibt zusaetzlich bestehen (Jitter/Rate-Limiting)",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.18",
       "summary": "Zentraler Monitoring-Scheduler, Phase 19 - Nachkorrektur: 0.9.3-alpha.17 wurde beim Live-Rollout auf dem Dev-VM zweimal in Folge automatisch zurueckgerollt (monkey-release-recovery, unbestaetigte Transaktion nach 5 Minuten), weil der OpenRemote-MQTT-Subscribe-Burst beim Backend-Binding (cmd/bridge/wire.go wireBackend(), schon vorbestehend, ohne jede Pause zwischen Subscribe-Aufrufen) durch die in alpha.17 von 27 auf 33 erweiterten Bridge-Self-Status-Attribute reproduzierbar ueber eine Zuverlaessigkeitsgrenze getrieben wurde. Fix: subscribeBurstPacing=2ms zwischen den Subscribe-Aufrufen - genau das vom Auftrag selbst geforderte 'Jitter, begrenzte Parallelitaet, keine Startstuerme'. Inhaltlich sonst identisch mit 0.9.3-alpha.17 (siehe dortiger Eintrag fuer die vollstaendige Feature-Liste dieses Runs).",
       "features": [
