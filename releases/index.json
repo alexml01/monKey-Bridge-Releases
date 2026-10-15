@@ -788,6 +788,18 @@
         "cmd/bridge: devicesTotal/devicesOnline/devicesOffline/devicesStale/backendSyncIssues/cpuTemperatureCelsius jetzt Teil des Bridge-Asset-Attributsatzes (Erstanlage UND regulaerer Reconcile eines bestehenden Assets)",
         "Vollregression: go vet clean, go build clean, gezielte -race-Laeufe gruen (internal/openremote, internal/selfstatus, betroffene cmd/bridge-Tests), neuer Regressionstest fuer die Reconcile-Nachruestung bei bereits bekannten Assets"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.26",
+      "summary": "Phase 19 - Neustrukturierung Einstellungen/Backend/Cockpit (Quellcommits f77dee6 / c0c6902, ML-monkey-bridge). Die bisherigen sieben eigenstaendigen Backend-/OpenRemote-/Cockpit-Seiten und das reine Tab-/Switcher-Geruest sind entfernt. GET /settings/openremote-cockpit buendelt MONKey Cockpit und OpenRemote manuell gleichberechtigt hinter einem rein clientseitigen Umschalter, plus drei aufklappbare Bereiche (Synchronisation / Zuordnungen & Einhaengepunkt / Diagnose & Alarme) statt sechs Tabs und zwei Nebenseiten. GET /settings/other-backends buendelt ThingsBoard und Zabbix als kompakte Statuskarten mit aufklappbarer Konfiguration; ein deaktiviertes Backend zeigt keine rote Betriebsstoerung mehr. Jede alte GET-Adresse leitet dauerhaft (301) auf die neue Seite weiter, keine POST-Route hat sich geaendert.",
+      "features": [
+        "cmd/portal: GET /settings/openremote-cockpit ersetzt openremotePage/openremoteBindingsPage/openremoteReconcile/settings_cockpit - ein clientseitiger Modus-Umschalter (MONKey Cockpit / OpenRemote manuell), beide Formulare stets im DOM, Status Nicht eingerichtet / Verbunden - OpenRemote manuell / Verbunden - MONKey Cockpit / Verbindungsfehler",
+        "cmd/portal: GET /settings/other-backends ersetzt thingsboardPage/zabbixPage/backendOverviewPage - ThingsBoard und Zabbix als Statuskarten mit aufklappbarer Konfiguration, eigener 'Deaktiviert'-Zustand statt roter Fehleranzeige",
+        "cmd/portal: ueber 850 Zeilen unerreichbar gewordenes Tab-/Switcher-Geruest entfernt (backendPageHeader/buildBackendNav/tabRedirect/backendViewHeader/backendOpenRemoteViewHeader/backendToggleAction/backendSubpageRoute/resolveSelectedMonitoringTab), sieben Templates geloescht",
+        "cmd/portal: jede alte GET-Adresse (/backend, /backend/openremote/*, /backend/thingsboard/*, /backend/zabbix/*, /openremote*, /thingsboard, /zabbix, /settings/cockpit) leitet dauerhaft (301) auf die neue Seite weiter - alle POST-Routen unveraendert, keine parallele Konfigurationslogik",
+        "cmd/portal: RBAC der konsolidierten Seiten auf permMonitoringStatusRead (Techniker-lesbar, wie zuvor die Einzelseiten) statt des engeren, vormals nur fuer /settings/cockpit geltenden permEinstellungen; schreibende Aktionen bleiben permMonitoringConfigWrite-gated",
+        "Vollregression: go vet clean, go build clean, gofmt clean, gesamtes Repository gruen (56 Pakete, cmd/portal inkl. 12 neuer Tests fuer die beiden konsolidierten Seiten)"
+      ]
     }
   ]
 }
