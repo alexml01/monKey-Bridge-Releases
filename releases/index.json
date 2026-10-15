@@ -809,6 +809,16 @@
         "cmd/bridge: neuer systemAgentCommand-Typ GetInventory (kein Agent-UDS-Aufruf, wie GetSystemInventory) liefert den vollstaendigen Geraetebestand gemaess dem abgestimmten Cockpit-Vertrag - macs als Array mit hoechstens einem Element, bindingStatus ungefaltet (synced/pending/drifted/error/missing), unbekannte Skalare als null, Ableitungen (checkedVia ueber Eltern-/Geschwistergeraet) explizit als 'via:<id>' markiert, Erreichbarkeit ueber eine Alters-/Frischepruefung (devicestate.EffectiveQuality) fuer positive Aussagen",
         "Vollregression: go vet clean, go build clean, go test ./... -count=1 -timeout 20m gruen (56 Pakete), Cross-Compile amd64+arm64"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.28",
+      "summary": "Phase 19 - Showroom-Bereinigung und drei Root-Cause-Fixes (Nutzerauftrag \"Showroom-Testsystem bereinigen und Fehlerursachen beheben\", ML-monkey-bridge Commits f30f580/21ad36b/e6c4f8f/aeaeeab). openremote.DeleteAsset ruft jetzt den echten Loesch-Endpunkt (DELETE /asset?assetId=, kein Pfad-Parameter) auf - die vorherige Implementierung schlug seit 2026-10-14 bei JEDEM Versuch mit HTTP 405 fehl (live gefunden: drei bestaetigte Loeschauftraege, je 327 gescheiterte Versuche, nie erfolgreich). scanForDeletionCandidates bereinigt jetzt auch Bindungen ohne jemals erfolgreich angelegtes Asset (leere ExternalID). Die crossXio-Bulk-Onboarding-Dublettenpruefung vergleicht jetzt zusaetzlich die MAC-Adresse, nicht mehr nur die Seriennummer (bei den meisten crossXio-Geraeten gar nicht verfuegbar).",
+      "features": [
+        "internal/openremote: DeleteAsset root-cause-korrigiert auf den echten, per Live-OpenAPI-Dokument verifizierten Endpunkt",
+        "cmd/bridge: scanForDeletionCandidates bereinigt nie provisionierte Bindungen (leere ExternalID) automatisch, ohne OR-API-Aufruf",
+        "cmd/portal: crossXio-Bulk-Onboarding-Dublettenpruefung um MAC-Abgleich erweitert (Serial-Abgleich alleine deckt die meisten realen Geraete nicht ab)",
+        "Vollregression: go vet clean, go build clean, go test ./... -count=1 gruen (alle Pakete), Cross-Compile amd64+arm64"
+      ]
     }
   ]
 }
