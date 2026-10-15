@@ -800,6 +800,15 @@
         "cmd/portal: RBAC der konsolidierten Seiten auf permMonitoringStatusRead (Techniker-lesbar, wie zuvor die Einzelseiten) statt des engeren, vormals nur fuer /settings/cockpit geltenden permEinstellungen; schreibende Aktionen bleiben permMonitoringConfigWrite-gated",
         "Vollregression: go vet clean, go build clean, gofmt clean, gesamtes Repository gruen (56 Pakete, cmd/portal inkl. 12 neuer Tests fuer die beiden konsolidierten Seiten)"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.27",
+      "summary": "Phase 19 - Generischer Strukturbaum Phase 5a/5b (ADR-0014, Quellcommits ef009a4/c9a15d3, ML-monkey-bridge) und neuer, ausschliesslich lesender GetInventory-Befehl (Auftrag 2 \"Geraetidentitaet - Freigabe Cockpit-Funktionen und lesender Bridge-Inventur\", Quellcommits a850a7d/32bff5f/607819d, Vertrag docs/contracts/device-identity-1.0.md). Strukturbaum: additive structure_nodes-Tabelle plus vollstaendige Accessoren mit Referenzintegritaet (Eltern-Existenzpruefung), Zyklenschutz, Standort-grenze und einer rein lesenden Migrations-Vorbereitungsfunktion - keine Migration bestehender Daten ausgefuehrt, keine alten Tabellen angetastet. GetInventory liefert kanonischen Geraetebestand (ID/Name/Treiber/Rolle/MAC/IP/Seriennummer/Hersteller/Modell/OpenRemote-Bindung/Systemmitglied-schaften/Erreichbarkeit/Pruefweg) ausschliesslich aus bereits persistierten Daten - unbekannte Werte als JSON null, keine erfundenen Daten, keine neue Geraeteerkennung, kein Schreibzugriff.",
+      "features": [
+        "internal/store: structure_nodes-Schema (additiv) + CreateStructureNode/GetStructureNode/ListStructureNodeChildren/RenameStructureNode/MoveStructureNode/ReorderStructureNodeChildren mit Konfliktpruefung (expected_name/expected_parent/expected_children), Zyklenschutz und Standortgrenze; PlanStructureNodeMigrationFromLegacyTables (rein lesend, nicht produktiv verdrahtet)",
+        "cmd/bridge: neuer systemAgentCommand-Typ GetInventory (kein Agent-UDS-Aufruf, wie GetSystemInventory) liefert den vollstaendigen Geraetebestand gemaess dem abgestimmten Cockpit-Vertrag - macs als Array mit hoechstens einem Element, bindingStatus ungefaltet (synced/pending/drifted/error/missing), unbekannte Skalare als null, Ableitungen (checkedVia ueber Eltern-/Geschwistergeraet) explizit als 'via:<id>' markiert, Erreichbarkeit ueber eine Alters-/Frischepruefung (devicestate.EffectiveQuality) fuer positive Aussagen",
+        "Vollregression: go vet clean, go build clean, go test ./... -count=1 -timeout 20m gruen (56 Pakete), Cross-Compile amd64+arm64"
+      ]
     }
   ]
 }
