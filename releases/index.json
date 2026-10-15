@@ -819,6 +819,15 @@
         "cmd/portal: crossXio-Bulk-Onboarding-Dublettenpruefung um MAC-Abgleich erweitert (Serial-Abgleich alleine deckt die meisten realen Geraete nicht ab)",
         "Vollregression: go vet clean, go build clean, go test ./... -count=1 gruen (alle Pakete), Cross-Compile amd64+arm64"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.29",
+      "summary": "Phase 19 - P0-2/P0-3 des Geraeteverwaltungs-Auftrags (ML-monkey-bridge Commits 00c2dd4/1d5140d). Device.Parent um den Praefix node:<id> erweitert (ADR-0014 generischer Strukturbaum, keine neue Spalte). provisionStructureNodes legt jeden Strukturknoten als RoomAsset an (mit Cockpit abgestimmtes additives monkeyNode-Attribut) - RoomAsset statt GroupAsset, live gegen die echte OpenRemote-API bestaetigt (keine childAssetType-Einschraenkung, beliebig verschachtelte Unterknoten UND direkt zugeordnete Geraete am selben Knoten gleichzeitig moeglich, kein versteckter Geraetecontainer noetig).",
+      "features": [
+        "internal/config: Device.Parent-Praefix node:<id>, validateParent/EntityParent erweitert",
+        "cmd/bridge: provisionStructureNodes (RoomAsset, monkeyNode-Attribut), provisionStandaloneDevices loest node:<id>-Parents auf",
+        "Vollregression: go vet clean, go build clean, go test ./... -count=1 gruen (ein bekannter, isoliert bestaetigter Flake in internal/mqtt unter Lastspitzen, unabhaengig von dieser Aenderung)"
+      ]
     }
   ]
 }
