@@ -849,6 +849,15 @@
         "3 neue Tests (internal/store: leere Tabelle, letzte Einfuegung gewinnt, abgelehnte Auftraege verdraengen den letzten bekannten Auftrag nicht; cmd/bridge: simulierter Reload beweist unveraenderten Zustand danach)",
         "Live verifiziert nach echtem Prozessneustart: structureCommandState=succeeded, structureLastCommandId=cockpit-QlMNi4bSqMAERoq1, monkeyStructureRevision=1 - alle drei korrekt wiederhergestellt statt zurueckgesetzt"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.36",
+      "summary": "Phase 19 - structure-command-2.0: Root-Cause-Fix fuer den naechsten Live-Fund im gemeinsamen E2E-Test mit Cockpit, direkt nach Alpha.35 (UpdateNode-Test). succeeded/rev 2 wurden gemeldet, monkeyNode.rev zeigte in OpenRemote korrekt 2, aber der Asset-eigene Name blieb unveraendert. verifyAndRecordBinding behandelte einen abweichenden Namen generell als moegliche ABSICHTLICHE externe Umbenennung (fuer Raeume/Etagen/Gebaeude richtig) und korrigierte ihn deshalb nie automatisch - fuer einen Strukturknoten (ausschliesslich signierter structureCommand-Kanal) gibt es diese Ambiguitaet nicht.",
+      "features": [
+        "cmd/bridge/provision.go: verifyAndRecordBinding macht fuer entityType==\"node\" eine gezielte Ausnahme von der Namens-Schutzregel - ein Namenskonflikt wird fuer Strukturknoten automatisch per RenameAndReparentAsset korrigiert, ManuallySet-Schutz bleibt unberuehrt",
+        "2 neue Tests (Knoten-Namenskonflikt wird korrigiert; Knoten bleibt bei ManuallySet trotzdem geschuetzt); voller cmd/bridge-Testlauf isoliert gruen",
+        "Live verifiziert gegen den konkreten Cockpit-Testknoten: Asset-Name in OpenRemote jetzt \"P0-E2E Bereich 1 (umbenannt)\" (vorher dauerhaft beim alten Namen), monkeyNode.rev=2, Parent unveraendert"
+      ]
     }
   ]
 }
