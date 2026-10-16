@@ -828,6 +828,17 @@
         "cmd/bridge: provisionStructureNodes (RoomAsset, monkeyNode-Attribut), provisionStandaloneDevices loest node:<id>-Parents auf",
         "Vollregression: go vet clean, go build clean, go test ./... -count=1 gruen (ein bekannter, isoliert bestaetigter Flake in internal/mqtt unter Lastspitzen, unabhaengig von dieser Aenderung)"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.34",
+      "summary": "Phase 19 - structure-command-2.0 (Cockpit-Vertrag): neues Paket internal/structurecmd fuehrt signierte Cockpit-Strukturauftraege aus (CreateNode/UpdateNode/MoveNode/ReorderNodes/MoveDevice/PreviewRemoveNode/RemoveNode-subtree:false). Im gemeinsamen E2E-Test mit Cockpit drei Root Causes gefunden und behoben: fehlende Attribut-Provisionierung am Bridge-Asset, die Schluessel-URL faelschlich an die Cockpit-Enrollment gekoppelt (jeder Auftrag scheiterte mit bad_signature), und der eigentliche Architekturfehler - succeeded wurde gemeldet, bevor die OpenRemote-Synchronisation bestaetigt war (Vertrag Paragraph 6). dispatch() stoesst jetzt synchron denselben Reload an, der auch POST /reload bedient, und faellt bei dessen Fehlschlag bewusst auf running zurueck (nie succeeded/failed).",
+      "features": [
+        "internal/structurecmd: Envelope-Pruefung (Signatur/Idempotenz/Tenant/BridgeId/Expiry/Permission/Scope/RemoteManagement) + Dispatch fuer 7 Auftragstypen, gegen Cockpits echte signierte Testvektoren getestet",
+        "cmd/bridge/structure_command_device.go: structureCommand-Attribut am Bridge-eigenen Asset, triggerSync() stoesst nach jeder erfolgreichen lokalen Mutation synchron POST /reload an",
+        "internal/cmdsign: Schluessel-URL nicht mehr an Cockpit-Enrollment gekoppelt (oeffentlicher Endpunkt), Load() gibt bei leerem Verzeichnis konsistent einen leeren, benutzbaren Store zurueck",
+        "2 neue Regressionstests fuer die vollstaendige dispatch()-Lifecycle-Kette (succeeded nur nach bestaetigtem Reload, running bei Sync-Fehlschlag ohne Dublette); voller cmd/bridge-Testlauf gruen",
+        "Live verifiziert: konkreter Cockpit-Testauftrag (P0-E2E Bereich 1) per DebugRawAsset gegen die echte OpenRemote-Instanz bestaetigt (korrekte Identitaet/Parent/monkeyNode)"
+      ]
     }
   ]
 }
