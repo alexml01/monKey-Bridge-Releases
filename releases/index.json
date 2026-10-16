@@ -858,6 +858,16 @@
         "2 neue Tests (Knoten-Namenskonflikt wird korrigiert; Knoten bleibt bei ManuallySet trotzdem geschuetzt); voller cmd/bridge-Testlauf isoliert gruen",
         "Live verifiziert gegen den konkreten Cockpit-Testknoten: Asset-Name in OpenRemote jetzt \"P0-E2E Bereich 1 (umbenannt)\" (vorher dauerhaft beim alten Namen), monkeyNode.rev=2, Parent unveraendert"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.37",
+      "summary": "Phase 19 - structure-command-2.0: drei weitere Live-Funde von Cockpit im selben E2E-Durchgang (MoveDevice, MoveNode, PreviewRemoveNode). (1) MoveDevice meldete conflict, obwohl sich am Geraete-Parent nichts geaendert hatte - Vertrag Paragraph 3 verlangt die nackte, opake nodeId, Device.Parent trug intern aber den Praefix node:<id>. (2) monkeyStructureRevision blieb nach einem erfolgreichen MoveNode unveraendert - der Bump lief bisher ERST NACH dem synchronen Reload. (3) PreviewRemoveNode nannte nur direkte Kinder, nicht den ganzen Teilbaum.",
+      "features": [
+        "internal/structurecmd: neuer Helfer comparableParentValue normalisiert den node:-Praefix sowohl beim Vergleich als auch bei jedem an Cockpit gemeldeten Wert (current UND changed.devices[].parentId)",
+        "cmd/bridge/structure_command_device.go: BumpStructureRevision laeuft jetzt VOR triggerSync() statt danach - der Reload sieht die neue Revision sofort; dabei einen zweiten Fehler mitbehoben (PreviewRemoveNode haette die Revision bisher ebenfalls faelschlich erhoeht, da es ebenfalls state=succeeded meldet)",
+        "internal/structurecmd: buildRemovePreview sammelt Descendants/Devices jetzt rekursiv (BFS) ueber den ganzen Teilbaum statt nur die direkte Ebene; has_children/has_devices bleiben bewusst auf der direkten Ebene; leere Listen werden konsistent als [] statt null gemeldet",
+        "9 neue Tests (internal/structurecmd: 3x MoveDevice-Normalisierung, 2x PreviewRemoveNode-Teilbaum/Leerlisten; cmd/bridge: Revisions-Reihenfolge, Preview-bumpt-nicht); volle cmd/bridge+internal/structurecmd-Suite isoliert gruen"
+      ]
     }
   ]
 }
