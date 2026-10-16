@@ -839,6 +839,16 @@
         "2 neue Regressionstests fuer die vollstaendige dispatch()-Lifecycle-Kette (succeeded nur nach bestaetigtem Reload, running bei Sync-Fehlschlag ohne Dublette); voller cmd/bridge-Testlauf gruen",
         "Live verifiziert: konkreter Cockpit-Testauftrag (P0-E2E Bereich 1) per DebugRawAsset gegen die echte OpenRemote-Instanz bestaetigt (korrekte Identitaet/Parent/monkeyNode)"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.35",
+      "summary": "Phase 19 - structure-command-2.0: Root-Cause-Fix direkt im Anschluss an Alpha.34, Live-Fund Cockpit. monkeyStructureRevision und structureCommandState/-Result/structureLastCommandId wurden nach JEDEM Reload (nicht nur einem Prozessneustart) auf ihren Leerwert zurueckgesetzt - der bestehende Initial-Snapshot-Mechanismus (wireBackend) veroeffentlichte den frischen, hartcodierten In-Memory-Zustand eines neu konstruierten structureCommandDevice aktiv an OpenRemote und ueberschrieb damit den zuvor korrekten Stand, entgegen Vertrag Paragraph 6.",
+      "features": [
+        "internal/store: neues GetLatestStructureCommand liest den zuletzt tatsaechlich bearbeiteten Auftrag aus der bestehenden Idempotenz-Tabelle (nach Einfuegereihenfolge)",
+        "cmd/bridge/structure_command_device.go: newStructureCommandDevice seedet seinen In-Memory-Zustand jetzt aus dem zuletzt gespeicherten Auftrag bzw. demselben DB-Wert, den die Provisionierung fuer monkeyStructureRevision schon nutzt - kein Leerwert mehr bei bereits vorhandenem Verlauf",
+        "3 neue Tests (internal/store: leere Tabelle, letzte Einfuegung gewinnt, abgelehnte Auftraege verdraengen den letzten bekannten Auftrag nicht; cmd/bridge: simulierter Reload beweist unveraenderten Zustand danach)",
+        "Live verifiziert nach echtem Prozessneustart: structureCommandState=succeeded, structureLastCommandId=cockpit-QlMNi4bSqMAERoq1, monkeyStructureRevision=1 - alle drei korrekt wiederhergestellt statt zurueckgesetzt"
+      ]
     }
   ]
 }
