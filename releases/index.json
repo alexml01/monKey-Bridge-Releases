@@ -868,6 +868,16 @@
         "internal/structurecmd: buildRemovePreview sammelt Descendants/Devices jetzt rekursiv (BFS) ueber den ganzen Teilbaum statt nur die direkte Ebene; has_children/has_devices bleiben bewusst auf der direkten Ebene; leere Listen werden konsistent als [] statt null gemeldet",
         "9 neue Tests (internal/structurecmd: 3x MoveDevice-Normalisierung, 2x PreviewRemoveNode-Teilbaum/Leerlisten; cmd/bridge: Revisions-Reihenfolge, Preview-bumpt-nicht); volle cmd/bridge+internal/structurecmd-Suite isoliert gruen"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.38",
+      "summary": "Phase 19 - structure-command-2.0: vier weitere Live-Funde von Cockpit im selben E2E-Durchgang. (1) RemoveNode meldete succeeded, obwohl das OpenRemote-Asset nach mehreren Minuten weiterhin existierte - die Loeschung wurde nur in backend_sync_queue eingereiht, die Ausfuehrung lief ausschliesslich auf deletionSyncLoop's eigenem 5-Minuten-Takt. (2) subtree_hash aenderte sich nicht bei einer reinen Namensaenderung. (3) triggerSync()'s 30s-Timeout war zu knapp fuer einen vollen Reload unter realer Last.",
+      "features": [
+        "cmd/bridge/admin.go: neuer Endpunkt POST /deletion-sync/run-now stoesst GENAU EINEN Durchlauf des bestehenden deletionSyncTick() synchron an - keine zweite Verarbeitungslogik, derselbe Pfad wie der periodische Takt",
+        "cmd/bridge/structure_command_device.go: confirmNodeDeletions prueft nach jedem erfolgreichen Reload, ob ein geloeschter Knoten backend-seitig bereits bereinigt ist - sonst faellt der Zustand auf running zurueck; triggerSync-Timeout von 30s auf 120s angehoben",
+        "internal/structurecmd: computeSubtreeHash hasht jetzt zusaetzlich Name+Rev der direkten Ebene statt nur IDs - eine reine Umbenennung aendert den Hash jetzt korrekt",
+        "8 neue Tests (internal/structurecmd: 4x Hash-Namensaenderung + Konflikt-Durchsetzung; cmd/bridge: 2x RemoveNode-Loeschbestaetigung); volle cmd/bridge+internal/structurecmd-Suite isoliert gruen"
+      ]
     }
   ]
 }
