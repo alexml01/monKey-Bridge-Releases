@@ -950,6 +950,18 @@
         "2 neue/angepasste Tests, volle internal/structurecmd- und cmd/bridge-Suiten isoliert gruen, go vet clean",
         "Live auf der Dev-VM deployed und bestaetigt (GitDirty=false, Commit 4c3c26e)"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.47",
+      "summary": "Phase 19 - P0 A2: SetDeviceLifecycle, PreviewRemoveDevice und RemoveDevice implementiert (Vertrag §5). Dependents sind Device.ViaDeviceID-Kinder (Controller/Namespace), device_hash wie computeSubtreeHash fuer RemoveNode, Backend-Loeschung ueber die bestehende deletionSyncLoop-Maschinerie. Neues Lesemodell monkeyLifecycle (natives Struct wie monkeyNode, nicht JSON-Text wie monkeyAvSystems - OpenRemote akzeptiert Objekte nativ).",
+      "features": [
+        "internal/structurecmd/handlers.go: handleSetDeviceLifecycle, handlePreviewRemoveDevice, handleRemoveDevice, buildRemoveDevicePreview, computeDeviceHash",
+        "internal/config: neuer Typ DeviceLifecycle (state/since/by/reason/previous), bewusst getrennt von MonitoringDisabled",
+        "internal/store: 5 neue devices.lifecycle_*-Spalten (additiv), GetDevice/SetDevice/ListDevices erweitert",
+        "cmd/bridge/provision.go: monkeyLifecycleAttrs an allen 4 Geraete-Provisionierungsstellen verdrahtet (kein erfundener Leerwert fuer nie angefasste Geraete)",
+        "18 neue/angepasste Tests, volle internal/structurecmd-, internal/store- und cmd/bridge-Suiten isoliert gruen, go vet clean",
+        "Live auf der Dev-VM deployed und bestaetigt (GitDirty=false, Commit 6a132c7)"
+      ]
     }
   ]
 }
