@@ -899,6 +899,16 @@
         "3 neue Tests (Auftrag wird beim Start nachgeholt; leerer Wert loest nichts aus; fehlende Bridge-Bindung loest nichts aus, kein Absturz); volle cmd/bridge-Suite isoliert gruen",
         "Live nach Deploy verifiziert: structureCommand-Attribut stand zum Zeitpunkt dieses konkreten Neustarts leer (kein anstehender Auftrag) - der Replay-Pfad wurde dadurch im erwarteten Negativfall bestaetigt (stiller Return ohne Dispatch, kein Logeintrag), ein aktiver Nachholvorgang wird erst beim naechsten Neustart WAEHREND eines nicht-leeren structureCommand-Werts sichtbar"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.41",
+      "summary": "Phase 19 - structure-command-2.0: Alpha.40s Start-Replay blieb live wirkungslos (gemeinsamer Test mit Cockpit, 'P0-Starttest') - Root Cause gefunden und behoben: wireBackend publiziert bei JEDEM Reload/Neustart den In-Memory-Zustand jedes gebundenen Attributs als Initial Snapshot an OpenRemote, structureCommand ist dabei aber IMMER hartcodiert leer. Dieser Snapshot-Publish war live reproduzierbar schneller als der Replay-eigene, separat aufgebaute OpenRemote-Client - ein waehrend eines Ausfalls per Cockpit-PUT bereits am Asset stehender Auftrag wurde dadurch VOR dem Replay-Lesezugriff wieder auf leer zurueckgesetzt.",
+      "features": [
+        "cmd/bridge/structure_command_device.go: GetState liefert fuer structureCommand jetzt bewusst einen Fehler statt des hartcodierten Leerwerts - structureCommand ist ein reiner Eingabekanal, die Bridge darf ihn nie selbst schreiben/publizieren",
+        "wireBackend (cmd/bridge/wire.go) ueberspringt dadurch nur den schaedlichen Initial-Snapshot-Publish fuer dieses eine Attribut - Bind()/SendCommand (Live-Kommando-Empfang) bleiben unberuehrt, keine Architekturaenderung noetig",
+        "1 neuer Test (TestStructureCommandDevice_GetState_NeverPublishesStructureCommandItself), volle cmd/bridge-Suite isoliert gruen, go vet clean",
+        "Live auf der Dev-VM deployed und per /monitor/version bestaetigt (GitDirty=false, Commit e4f0b8d)"
+      ]
     }
   ]
 }
