@@ -962,6 +962,20 @@
         "18 neue/angepasste Tests, volle internal/structurecmd-, internal/store- und cmd/bridge-Suiten isoliert gruen, go vet clean",
         "Live auf der Dev-VM deployed und bestaetigt (GitDirty=false, Commit 6a132c7)"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.48",
+      "summary": "Phase 19 - drei kleine Live-Funde aus Cockpits A2-Test behoben: (1) RemoveDevice bekommt jetzt denselben synchronen Loeschbestaetigungspfad wie RemoveNode (confirmEntityDeletions statt confirmNodeDeletions, deckt jetzt auch changed.Devices ab - vorher 193s statt 17-21s). (2) PreviewRemoveDevice liefert dependents/descendants/devices/foreignAssets/blockers jetzt immer als [] statt teilweise null/fehlend (omitempty-Tag entfernt, Felder explizit initialisiert). (3) systems.rev zaehlt jetzt bei jeder Mitgliedsaenderung (SetRelation/DeleteRelation/DeleteDevice) hoch, nicht nur bei SetSystem selbst (Vertrag §3).",
+      "features": [
+        "cmd/bridge/structure_command_device.go: confirmNodeDeletions -> confirmEntityDeletions, deckt changed.Nodes UND changed.Devices ab",
+        "internal/structurecmd/structurecmd.go+handlers.go: Preview.Dependents ohne omitempty, buildRemoveDevicePreview initialisiert alle Listenfelder explizit als []",
+        "internal/store/rooms.go: neuer Helfer bumpSystemRev, verdrahtet in SetRelation (inkl. altem System bei Relation-Verschiebung) und DeleteRelation",
+        "internal/store/devices.go: DeleteDevice bumpt die rev jedes betroffenen Systems explizit (entfernt Relations ueber direktes SQL, nicht ueber DeleteRelation)",
+        "5 neue/angepasste Regressionstests (2x RemoveDevice-Dispatch, 1x JSON-Serialisierung, 3x Rev-Bump) + 2 korrigierte Testfixtures",
+        "Volle internal/structurecmd-, internal/store- und cmd/bridge-Suiten isoliert gruen, go vet clean",
+        "Live auf der Dev-VM deployed und bestaetigt (GitDirty=false, Commit cc8077a)",
+        "P0-Testsystem (06GMJY6QYD186BSZ9ZS0PQN344) von der Dev-VM entfernt (0 Mitglieder bestaetigt)"
+      ]
     }
   ]
 }
