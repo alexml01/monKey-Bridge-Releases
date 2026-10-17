@@ -878,6 +878,16 @@
         "internal/structurecmd: computeSubtreeHash hasht jetzt zusaetzlich Name+Rev der direkten Ebene statt nur IDs - eine reine Umbenennung aendert den Hash jetzt korrekt",
         "8 neue Tests (internal/structurecmd: 4x Hash-Namensaenderung + Konflikt-Durchsetzung; cmd/bridge: 2x RemoveNode-Loeschbestaetigung); volle cmd/bridge+internal/structurecmd-Suite isoliert gruen"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.39",
+      "summary": "Phase 19 - structure-command-2.0: Root-Cause-Fix fuer den dauerhaft fehlgeschlagenen RemoveNode-Loeschauftrag aus Alpha.38 (cockpit-94wz5xKdicWE38Ae). processDeletionJob prueft die Eigentuemerschaft ueber das Attribut monkeyBridgeInstanceId - Strukturknoten (RoomAsset) bekamen dieses Attribut bisher NIE (anders als Geraete), die Pruefung schlug dadurch bei JEDEM Knoten systemisch mit 'fremdes Asset' fehl, unabhaengig vom tatsaechlichen Eigentuemer.",
+      "features": [
+        "cmd/bridge/provision.go: provisionStructureNodes haengt monkeyBridgeInstanceId jetzt sowohl bei der Erstanlage als auch beim Refresh eines bereits existierenden Knoten-Assets an",
+        "refreshMonkeyNodeOnExistingAsset von einem einzelnen Attribut auf variadic attrs umgestellt (betrifft alle 4 Aufrufer: Gebaeude/Etage/Raum/Knoten)",
+        "2 neue Tests (Attribut bei Erstanlage; Attribut beim Refresh eines bereits existierenden Knoten-Assets); volle cmd/bridge-Suite isoliert gruen",
+        "Der konkrete, bereits fehlgeschlagene Loeschauftrag manuell nachgezogen und live bestaetigt: Backend-Bindung bereinigt, OpenRemote-Asset tatsaechlich entfernt"
+      ]
     }
   ]
 }
