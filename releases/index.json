@@ -909,6 +909,16 @@
         "1 neuer Test (TestStructureCommandDevice_GetState_NeverPublishesStructureCommandItself), volle cmd/bridge-Suite isoliert gruen, go vet clean",
         "Live auf der Dev-VM deployed und per /monitor/version bestaetigt (GitDirty=false, Commit e4f0b8d)"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.42",
+      "summary": "Phase 19 - structure-command-2.0: dritter Anlauf fuer den Start-Replay - Alpha.41 reichte nicht, eine ZWEITE unabhaengige Ursache am selben Symptom ('P0-Starttest 2' mit Cockpit). provisionBridgeAsset schrieb bei JEDEM Start/Reload-Abgleich den hartcodierten Erstanlage-Default fuer structureCommand zurueck, zeitlich VOR der Konstruktion des structureCommandDevice - der Replay kam dadurch strukturell immer zu spaet. Cockpit wies zusaetzlich auf ein Race-Fenster im ersten Fix-Versuch hin.",
+      "features": [
+        "cmd/bridge/provision.go: neue Hilfsfunktion updateOnlyAttrs entfernt structureCommand komplett aus dem Attributsatz jedes Abgleich-Updates (beide UpdateAssetAttributes-Aufrufe in provisionBridgeAsset) - nur die initiale EnsureAsset-Erstanlage behaelt den Default",
+        "Race-frei: UpdateAssetAttributes() fuehrt selbst ein Read-Modify-Write durch (DebugRawAsset unmittelbar vor dem Merge) und laesst ein Attribut, das nicht im uebergebenen Slice steht, komplett unberuehrt - kein Lese-dann-Zurueckschreiben mehr noetig",
+        "2 neue/angepasste Tests (TestProvisionBridgeAsset_ExcludesStructureCommandFromReconcileUpdate, TestUpdateOnlyAttrs_RemovesStructureCommandKeepsOthers), volle cmd/bridge-Suite isoliert gruen, go vet clean",
+        "Live auf der Dev-VM deployed und per /monitor/version bestaetigt (GitDirty=false, Commit ef56106)"
+      ]
     }
   ]
 }
