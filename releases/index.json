@@ -940,6 +940,16 @@
         "11 neue/angepasste Tests, volle cmd/bridge-, internal/store- und internal/structurecmd-Suiten isoliert gruen, go vet clean",
         "Live auf der Dev-VM deployed, monkeyAvSystems per GetAsset gegen die echte OpenRemote-Instanz bestaetigt (inkl. live angelegtem P0-Testsystem)"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.46",
+      "summary": "Phase 19 - P0 A1: zwei Live-Funde aus dem ersten gemeinsamen MoveSystem-Test mit Cockpit behoben. (1) changed.systems[].rev meldete die ALTE Revision statt der neuen. (2) monkeyAvSystems.parentNodeId fuer ein Bestandssystem zeigte die blanke Legacy-Raum-ID ohne 'room:'-Praefix und stimmte dadurch nicht mit monkeyNode.id desselben Raums ueberein - Cockpit konnte das System keinem Knoten zuordnen.",
+      "features": [
+        "internal/structurecmd/handlers.go: handleMoveSystem liest die rev nach SetSystem frisch per GetSystem nach, statt dem (veralteten) Rueckgabewert zu vertrauen",
+        "cmd/bridge/provision.go: neue Funktion monkeyAvSystemsParentNodeID ergaenzt das fehlende 'room:'-Praefix fuer Legacy-raumgebundene Systeme",
+        "2 neue/angepasste Tests, volle internal/structurecmd- und cmd/bridge-Suiten isoliert gruen, go vet clean",
+        "Live auf der Dev-VM deployed und bestaetigt (GitDirty=false, Commit 4c3c26e)"
+      ]
     }
   ]
 }
