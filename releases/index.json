@@ -888,6 +888,17 @@
         "2 neue Tests (Attribut bei Erstanlage; Attribut beim Refresh eines bereits existierenden Knoten-Assets); volle cmd/bridge-Suite isoliert gruen",
         "Der konkrete, bereits fehlgeschlagene Loeschauftrag manuell nachgezogen und live bestaetigt: Backend-Bindung bereinigt, OpenRemote-Asset tatsaechlich entfernt"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.40",
+      "summary": "Phase 19 - structure-command-2.0: Cockpit-Vorschlag nach dem gemeinsamen Offline-Test (2026-10-17) umgesetzt - ein WAEHREND eines Bridge-Ausfalls geschriebener structureCommand-Wert wird beim naechsten Bridge-Start einmalig selbst nachgeholt, statt ausschliesslich auf eine erneute Zustellung von Cockpit angewiesen zu bleiben (die Cockpit fuer RemoveNode/RemoveDevice absichtlich NIE macht).",
+      "features": [
+        "cmd/bridge/structure_command_device.go: replayCurrentCommandOnStartup (echter OpenRemote-Client) delegiert an den testbaren Kern replayCurrentCommandFrom (dieselbe assetEnsurer-Abstraktion wie provision.go)",
+        "structureCommandStartupReplayOnce (paket-globales sync.Once statt Instanzfeld) sorgt fuer GENAU EINMAL pro Prozesslauf, nicht bei jedem Reload - structCmdDev wird bei jedem Reload neu konstruiert",
+        "Sicher wiederholbar bei einem bereits erfolgreich verarbeiteten Wert (Idempotenz-Tabelle liefert nur das gespeicherte Ergebnis erneut, keine zweite Mutation) und sicher bei einem inzwischen abgelaufenen Auftrag (expires_at lehnt ihn ab, wie bei jeder normalen Zustellung)",
+        "3 neue Tests (Auftrag wird beim Start nachgeholt; leerer Wert loest nichts aus; fehlende Bridge-Bindung loest nichts aus, kein Absturz); volle cmd/bridge-Suite isoliert gruen",
+        "Live nach Deploy verifiziert: structureCommand-Attribut stand zum Zeitpunkt dieses konkreten Neustarts leer (kein anstehender Auftrag) - der Replay-Pfad wurde dadurch im erwarteten Negativfall bestaetigt (stiller Return ohne Dispatch, kein Logeintrag), ein aktiver Nachholvorgang wird erst beim naechsten Neustart WAEHREND eines nicht-leeren structureCommand-Werts sichtbar"
+      ]
     }
   ]
 }
