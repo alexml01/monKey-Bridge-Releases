@@ -929,6 +929,17 @@
         "Root-Cause-Praezisierung: der bestehende 15-Minuten-reconcileLoop haette den Auftrag irgendwann zufaellig mitgeheilt (frische structureCommandDevice-Konstruktion seedet aus der Idempotenz-Tabelle) - explizit NICHT die von Cockpit geforderte deterministische Garantie",
         "Volle cmd/bridge-Suite isoliert gruen, go vet clean, live auf der Dev-VM deployed und per /monitor/version bestaetigt (GitDirty=false, Commit f1cd847)"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.45",
+      "summary": "Phase 19 - P0 A1: MoveSystem im structureCommand-Dispatcher implementiert (aendert die organisatorische Zuordnung eines AV-Systems, systems.room_id, intern weiterhin 'node:<id>') sowie das Lesemodell monkeyAvSystems (Bridge-Asset, JSON-Array ALLER Systeme mit id/name/kind/parentNodeId/members/rev) - Cockpit bestaetigt einen MoveSystem-Erfolg ausschliesslich darueber. Enthaelt den Fix fuer den beim ersten Deploy (Alpha.44) live gefundenen OpenRemote-400-Fehler (Array-Wert wird als JSON-Text statt nativem Slice gesendet, wie structureCommandResult).",
+      "features": [
+        "internal/structurecmd/handlers.go: handleMoveSystem (Konflikt-/Idempotenz-Mechanismus wie MoveNode/MoveDevice)",
+        "cmd/bridge/provision.go: buildMonkeyAvSystems/marshalMonkeyAvSystems, neue Store-Abfrage ListAllSystemsWithParent (room_id+rev)",
+        "internal/store/rooms.go: GetSystem liefert jetzt einen echten Fehler statt jeden Lesefehler als 'nicht gefunden' zu verwechseln",
+        "11 neue/angepasste Tests, volle cmd/bridge-, internal/store- und internal/structurecmd-Suiten isoliert gruen, go vet clean",
+        "Live auf der Dev-VM deployed, monkeyAvSystems per GetAsset gegen die echte OpenRemote-Instanz bestaetigt (inkl. live angelegtem P0-Testsystem)"
+      ]
     }
   ]
 }
