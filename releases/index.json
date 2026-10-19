@@ -990,6 +990,19 @@
         "Live auf der Dev-VM deployed und bestaetigt (GitDirty=false, Commit f30e23a)",
         "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.50",
+      "summary": "Phase 19 - AP2, klar begrenzter Fehlerbehebungs-Release (Alexanders Entscheidung nach dem AP2-Testlauf, keine neuen Funktionen, keine V3-Luecken behoben): drei unabhaengige Fehler behoben. (1) Unnoetige wiederkehrende 'online'-Schreibversuche (OpenRemote-Echo eines periodisch unveraendert republizierten STATE-Attributs) werden nicht mehr bei jedem Vorkommen geloggt - erstes Auftreten je Geraet+Attribut einmal protokolliert, danach nur noch intern gezaehlt; echte Fehler bleiben unveraendert sichtbar. (2) TOCTOU-Wettlaufsituation in der Bridge-Installationsidentitaet behoben (gleichzeitige Aufrufer auf ein frisches Verzeichnis konnten zuvor abweichende IDs erzeugen). (3) Ein von -race bestaetigtes Datenrennen beim Ueberschreiten der Controller-Aufbau-Gesamt-Deadline behoben (keine Verhaltensaenderung, nur eine bereits dokumentierte Garantie race-frei umgesetzt).",
+      "features": [
+        "cmd/bridge/wire.go + internal/device/device.go: neuer Sentinel ErrNotWritable, einmaliges Logging je Bindung statt bei jedem Vorkommen, interner Zaehler fuer Wiederholungen",
+        "internal/bridgeidentity/bridgeidentity.go: paketweiter Mutex serialisiert LoadOrCreate's Lese-dann-Anlegen-Ablauf",
+        "cmd/bridge/build_timed.go: Einweg-Riegel (timedOut) schliesst das von -race bestaetigte Datenrennen nach Ueberschreiten der Gesamt-Deadline",
+        "RemoteMaintenanceEnabled auf der Dev-VM dauerhaft aktiviert (separate, von diesem Release unabhaengige Konfigurationsaenderung, nicht Teil des signierten Payloads)",
+        "9 neue Regressionstests, alle sanity-geprueft (jeweils durch zeitweiliges Deaktivieren des jeweiligen Fixes reproduziert)",
+        "Volle internal/bridgeidentity-, internal/device- (-race) und cmd/bridge- (-p 1 bzw. -race) Suiten sowie Repo-Build/-Vet gruen",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false - NICHT auf der Dev-VM installiert, Installation erfolgt gesondert ueber das Cockpit"
+      ]
     }
   ]
 }
