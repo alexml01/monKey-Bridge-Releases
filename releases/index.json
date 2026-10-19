@@ -976,6 +976,20 @@
         "Live auf der Dev-VM deployed und bestaetigt (GitDirty=false, Commit cc8077a)",
         "P0-Testsystem (06GMJY6QYD186BSZ9ZS0PQN344) von der Dev-VM entfernt (0 Mitglieder bestaetigt)"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.49",
+      "summary": "Phase 19 - AP2 V3+V4 (Device Control F4 Produktionsrisiko): Bridge-seitige Wertebereichsvalidierung vor jedem Geraetebefehl (SendCommand lehnt Sollwerte ausserhalb des vom Controller selbst deklarierten Bereichs ab, veroeffentlicht stattdessen sofort den unveraenderten Istwert); neue, additive Drift-Pruefung verwaister Controller-Namespaces (logOrphanedNamespaces, rein lesend, kein Schreibzugriff); Meta-Nachtrag (meta.min/meta.max) fuer bereits provisionierte Namespace-Attribute ueber die bestehende, idempotente Reconcile-Provisionierung statt eines Sonderwerkzeugs; Versionsstempel-Korrektur (vier vorangegangene Commits liefen faelschlich noch unter alpha.48).",
+      "features": [
+        "internal/device/device.go: SendCommand prueft obj.Min/obj.Max vor dem Schreiben, veroeffentlicht bei Ablehnung sofort den unveraenderten Istwert (D2)",
+        "cmd/bridge/namespace_drift.go: logOrphanedNamespaces - je Raum, ueber alle Systeme gruppiert nach Endpunkt-Geraet, meldet Namespaces mit Live-Objekten ohne zustaendiges config.Device; schliesst die reservierten Endpunkt-Namespaces systemNamespaceKey/controllerSelfNamespace aus",
+        "cmd/bridge/provision.go: backfillNamespaceRangeMeta - ergaenzt fehlendes meta.min/meta.max ueber DebugRawAsset, niemals den Wert selbst; assetEnsurer um DebugRawAsset erweitert",
+        "internal/openremote/client.go: veralteter Kommentar zur Min/Max-Uebertragung korrigiert",
+        "internal/firmware/manifest.go: Versionsstempel auf alpha.49 nachgezogen (Audit-Klasse W11/D4)",
+        "14 neue Regressionstests insgesamt, alle sanity-geprueft; voller cmd/bridge-/internal/device-/internal/openremote-Testlauf (-p 1 bzw. -race), Build/Vet gruen",
+        "Live auf der Dev-VM deployed und bestaetigt (GitDirty=false, Commit f30e23a)",
+        "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false"
+      ]
     }
   ]
 }
