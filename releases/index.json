@@ -1,6 +1,17 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.51",
+      "summary": "Phase 19 Abschluss (Auftrag Alexander 25.10.2026, \"MONKey Bridge Phase 19 jetzt abschliessen\" + \"Phase 19 abschliessen und Showroom-Rollout vorbereiten\"): CR-3 Device IP Recovery vollstaendig - manueller Discovery-Pfad (Identitaetsabgleich beim Auffinden eines Kandidaten, monkeyIdentityConflicts-Vorschlag ip_changed, keine automatische Uebernahme) UND automatischer, begrenzter Ausloeser (Anbindung an die bereits bestehende RuntimeOffline-Klassifikation inkl. deren Grace-Period, hoechstens EIN UDP-Broadcast plus EIN TCP-Connect je Versuch, Backoff 5min-1h, In-Flight-Schutz pro Geraet, nie ein Netzwerk-Scan). UP-3 Rechte-Policy vollstaendig abgeschlossen - Portal-Eingabepruefung gegen die echte nmcli-Geraete-/Verbindungsliste UND vollstaendiger Host-Broker-Umbau (sieben eng typisierte network_*-Verben ueber den bereits bestehenden System-Agent/Host-Broker, kein neuer Dienst, keine neue IPC-Architektur) - die fruehere sudo-Wildcard-Berechtigung des Portal-Benutzers fuer nmcli ist entfernt, live auf der Dev-VM verifiziert (Netzwerkwechsel ueber die volle Kette, Rollback, Negativtest: sudo nmcli fuer den Portal-Benutzer verlangt jetzt ein Passwort). RemoveNode-Subtree und das Maintenance-Handover zu ThingsBoard/Zabbix sind bewusst zurueckgestellt (Alexanders Entscheidung 25.10.) - kein Teil dieses Releases, Vertraege bleiben gueltig.",
+      "features": [
+        "cmd/bridge/ip_recovery.go (neu): CR-3 automatischer Auto-Trigger, RuntimeOffline-Anbindung, ARP/Discovery-Snapshot/UDP-Broadcast-Kandidatenquellen in strikter Reihenfolge, 16 neue Tests",
+        "cmd/portal/handlers_discovery.go: CR-3 manueller Discovery-Pfad, Identitaetsabgleich via discoverymgr.ResolveIdentity",
+        "cmd/portal/handlers_network.go, cmd/monkey-system-agent/network_actions.go, cmd/monkey-host-migrate/broker.go (UP-3): sieben neue network_*-Broker-Verben, Portal ruft kein sudo mehr auf",
+        "scripts/factory/sudoers/monkey-portal-network: nmcli-Wildcard-Zeilen entfernt",
+        "Release signiert (dev-2026-09), linux/arm64, GitDirty=false - Installation gesondert ueber das lokale Bridge-Portal auf der Showroom-Bridge 192.168.168.203 freigegeben"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.21",
       "summary": "Phase 19 - E2E-Diagnose-Korrekturen (gemeinsam mit monKey Cockpit, Live- Showroom-Messung): (1) indirekte EDU-Namespace-Kind-Geraete (Display1, HDMI-KVM-Matrix) persistieren jetzt ihren Laufzeitzustand (vorher dauerhaft 'initializing/unknown', da kein eigener Connector = kein OnConnectionChange-Hook); (2) device_runtime_state (Quelle fuer monkeyState.observedAt/quality/state) wird jetzt alle 180s periodisch persistiert statt nur bei einem Erreichbarkeits-Wechsel oder beim naechsten vollen 15-Minuten-Reconcile - von Cockpit unabhaengig per 12-Proben-Messung bestaetigt (observedAt schritt vorher nur alle 15 min fort, identisch bei CUE/crossXio/Cynap). Enthaelt ausserdem die vorherige Nachkorrektur (alpha.17-20): echte Root-Cause-Korrektur des Bind-Fehlerpfads in wireBackend() (ein einzelner Attribut-Bind-Fehler blockiert nicht mehr alle weiteren Bindings) sowie den vollen Phase-19-Monitoring-Scheduler-Umfang (siehe Eintraege 0.9.3-alpha.17/18/19/20).",
       "features": [
