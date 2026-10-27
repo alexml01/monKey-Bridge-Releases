@@ -1,6 +1,17 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.52",
+      "summary": "Folgefix OpenRemote EnsureAsset-Reconciliation (Auftrag Alexander 25.-27.10.2026, 33429bc): monkeyMaintenanceDesired fehlte auf bereits bestehenden, laenger laufenden Bridge-Assets vollstaendig (Live-Fund auf der Showroom-Bridge .203 waehrend der WolfVision-Hardwareabnahme, AP3) - der bereits gebunden-Reconcile-Pfad ergaenzt fehlende bridgeOwnerExternalInput-Attribute jetzt additiv nach, ohne einen bereits vorhandenen externen Kommandowert zu ueberschreiben. Isolierte Abnahme gegen ein echtes OpenRemote 1.29 bestanden (gemeinsam mit monKey Cockpit, isolierter Stack, Realm ortest): Attribut ergaenzt, Asset-Identitaet erhalten, kein bereits vorhandener Wert angefasst, idempotent.",
+      "features": [
+        "cmd/bridge/attribute_ownership.go: neue Funktion externalInputOnlyAttrs (komplementaer zu excludeExternalInputAttrs) - liefert nur die bridgeOwnerExternalInput-Attribute",
+        "cmd/bridge/provision.go: monkeyMaintenanceDesired zur Attributliste ergaenzt; beide bestehenden Reconcile-Pfade (bereits gebunden + EnsureAsset-Fallback) ergaenzen fehlende externe Eingabekanaele additiv nach",
+        "cmd/bridge/ensure_asset_reconciliation_test.go (neu): fakeEnsurer-basierte Tests inkl. Lost-Update-Schutz (echter systemAgentCommand-Wert bleibt unberuehrt)",
+        "cmd/bridge/ensure_asset_reconciliation_live_openremote_test.go (neu): isolierter Abnahmetest gegen echtes OpenRemote 1.29 (env-var-gesteuert, standardmaessig uebersprungen)",
+        "Release signiert (dev-2026-09), linux/arm64, GitDirty=false - Installation gesondert ueber das lokale Bridge-Portal auf der Showroom-Bridge 192.168.168.203 freigegeben"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.51",
       "summary": "Phase 19 Abschluss (Auftrag Alexander 25.10.2026, \"MONKey Bridge Phase 19 jetzt abschliessen\" + \"Phase 19 abschliessen und Showroom-Rollout vorbereiten\"): CR-3 Device IP Recovery vollstaendig - manueller Discovery-Pfad (Identitaetsabgleich beim Auffinden eines Kandidaten, monkeyIdentityConflicts-Vorschlag ip_changed, keine automatische Uebernahme) UND automatischer, begrenzter Ausloeser (Anbindung an die bereits bestehende RuntimeOffline-Klassifikation inkl. deren Grace-Period, hoechstens EIN UDP-Broadcast plus EIN TCP-Connect je Versuch, Backoff 5min-1h, In-Flight-Schutz pro Geraet, nie ein Netzwerk-Scan). UP-3 Rechte-Policy vollstaendig abgeschlossen - Portal-Eingabepruefung gegen die echte nmcli-Geraete-/Verbindungsliste UND vollstaendiger Host-Broker-Umbau (sieben eng typisierte network_*-Verben ueber den bereits bestehenden System-Agent/Host-Broker, kein neuer Dienst, keine neue IPC-Architektur) - die fruehere sudo-Wildcard-Berechtigung des Portal-Benutzers fuer nmcli ist entfernt, live auf der Dev-VM verifiziert (Netzwerkwechsel ueber die volle Kette, Rollback, Negativtest: sudo nmcli fuer den Portal-Benutzer verlangt jetzt ein Passwort). RemoveNode-Subtree und das Maintenance-Handover zu ThingsBoard/Zabbix sind bewusst zurueckgestellt (Alexanders Entscheidung 25.10.) - kein Teil dieses Releases, Vertraege bleiben gueltig.",
       "features": [
