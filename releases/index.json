@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.56",
+      "summary": "Verteidigung in der Tiefe + Portal-Meldungsfehler (68e0920/cb22b0d, Phase19_Gesamtplan.md): provisionSystemDevices faengt jetzt eine Panik bei GENAU EINEM Geraet ab (recover(), laut geloggt, als store.BindingStatusError sichtbar - kein stiller Erfolg) statt den gesamten Bridge-Prozess mitzureissen, alle anderen Geraete und die Bridge selbst laufen unveraendert weiter. Portal zeigt nie erfolgreich geprueft (z.B. direkt nach einem Bridge-Neustart) nicht mehr faelschlich als kein neueres Release gefunden an. Hintergrund: .203 ging nach dem Alpha.54-Rollout in einen P0-Crashloop; Alpha.55 behob die konkrete Ursache (map-wertiger Attributvergleich), Alpha.56 haertet den Provisionierungs-Code zusaetzlich gegen kuenftige, heute nicht vorhergesehene Einzelgeraete-Fehler ab.",
+      "features": [
+        "Provisionierungs-Resilienz",
+        "Update-Check-Meldungsfix"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.55",
       "summary": "P0-Crashloop auf .203 behoben (e693759): \"existing != a.Value\" auf zwei interface{}-Werten in healMissingCockpitDeviceAttrs panierte zur Laufzeit, sobald beide Seiten denselben nicht vergleichbaren Typ (map[string]any) trugen - trifft monkeyControlPath/monkeyTopology, sobald das Attribut bereits einmal angelegt wurde. Ein reiner Backend-Provisionierungs-Vergleich riss dadurch den gesamten Runtime-Aufbau mit (systemd NRestarts>50 auf .203, Live-Fund unmittelbar nach dem Alpha.54-Rollout). attributeValuesEqual() normalisiert jetzt beide Seiten ueber denselben JSON-Codec statt \"!=\" - nie eine Panik. Zusaetzlich (91fc398): \"Verbindung testen\" am WolfProt-Zweig zeigte eine per RMS-Login explizit abgelehnte Anmeldung (ACCESS_DENIED) bisher trotzdem gruen als \"Verbunden.\" - wolfprotTestConnectionResult() entscheidet jetzt getrennt nach Transport- und Authentifizierungsergebnis. Zentrale go test ./... -p 1 -count=1 vor beiden Commits clean.",
       "features": [
