@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.55",
+      "summary": "P0-Crashloop auf .203 behoben (e693759): \"existing != a.Value\" auf zwei interface{}-Werten in healMissingCockpitDeviceAttrs panierte zur Laufzeit, sobald beide Seiten denselben nicht vergleichbaren Typ (map[string]any) trugen - trifft monkeyControlPath/monkeyTopology, sobald das Attribut bereits einmal angelegt wurde. Ein reiner Backend-Provisionierungs-Vergleich riss dadurch den gesamten Runtime-Aufbau mit (systemd NRestarts>50 auf .203, Live-Fund unmittelbar nach dem Alpha.54-Rollout). attributeValuesEqual() normalisiert jetzt beide Seiten ueber denselben JSON-Codec statt \"!=\" - nie eine Panik. Zusaetzlich (91fc398): \"Verbindung testen\" am WolfProt-Zweig zeigte eine per RMS-Login explizit abgelehnte Anmeldung (ACCESS_DENIED) bisher trotzdem gruen als \"Verbunden.\" - wolfprotTestConnectionResult() entscheidet jetzt getrennt nach Transport- und Authentifizierungsergebnis. Zentrale go test ./... -p 1 -count=1 vor beiden Commits clean.",
+      "features": [
+        "P0-Crashfix",
+        "WolfProt-Statustrennung"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.54",
       "summary": "net.wifi-Selfheal-Regression behoben (f6e6e0a, Phase19_Gesamtplan.md): checkNetWifi verglich bisher einen Textsubstring (\"activated\") aus dem falschen nmcli-Vokabular und meldete dadurch jede WLAN-Schnittstelle in jedem Zustand faelschlich als gestoert - auf .203 hat das waehrend des Alpha.53-Rollouts eine gesunde WLAN-Verbindung per Self-Healing wiederholt zwangsweise neu verbinden lassen und den automatischen Update-Rollback ausgeloest (Job 06GSVPAJWY7AD7E1K2XCTYRXF0). Jetzt wird ausschliesslich der numerische NetworkManager-Geraetezustand (NM_DEVICE_STATE) ausgewertet, kein Text-/Substring-Vergleich mehr. Vollstaendige Tests ueber die gesamte Zustandstabelle; bestehende Recovery-/Cooldown-/Eskalationslogik unveraendert und weiterhin bestaetigt. Kein weiterer inhaltlicher Unterschied zu alpha.53.",
       "features": [
