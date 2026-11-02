@@ -1,6 +1,18 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.53",
+      "summary": "Signierschluessel-Wiederherstellung + Nachbesserungstag 02.11.2026 (Phase19_Gesamtplan.md, Blocks 43-50): node-gebundene Strukturknoten-Anzeige korrigiert (Edit-Systempfad/Loesch-Sperre fuer am Strukturknoten platzierte Systeme), Bedienebene-Nachbesserung (Vorschlagen+Übernehmen statt Senden pro Klick, Echo-vs-gesendet sichtbar unterschieden inkl. Zeitueberschreitung, kompakter Befehlsverlauf), PerformanceBaseline-Testflakiness root-cause-behoben (versteckte, ungemockte Netzwerkabhaengigkeit + begrenzter Timeout in cmdsign.Store.Refresh), SMART-Vertrag mit Cockpit vollstaendig umgesetzt (device-identity-1.0 §6 monkeyControlPath statt kollidierendem controlAddress, §3b serial_mismatch-Case in monkeyIdentityConflicts statt Ad-hoc-Freitext, beide mit Merge-Level-/Idempotenz-Tests). Zentrale go test ./... -p 1 -count=1 vor diesem Release clean.",
+      "features": [
+        "cmd/portal/handlers_devices.go+inventory.go+internal/config/backend_binding_hierarchy.go: EntityParent/deviceLocationChain/loadDeviceRelations kennen jetzt die Kategorie \"node-gebundenes System\" - Detailseite zeigt den tatsaechlichen Platzierungsort statt \"Noch nicht platziert\"",
+        "cmd/portal/templates/device_detail.html+devices_form.html: Systempfad zeigt \"<Knotenname> › <Systemname>\"; fehlgerouteter \"System entfernen\"-Link fuer node-gebundene Systeme durch eine sichere, klar beschriftete Sperre ersetzt (keine neue Loeschroute, keine Loeschregel geaendert)",
+        "cmd/portal/templates/remote_panel_widget.html+handlers_monitor.go: Stepper-Controls senden erst nach explizitem \"Übernehmen\"; controlResult/webtap-Fehler unterscheiden jetzt Timeout von generischem Fehler (canon.CommandTimeout durchgereicht); neuer, rein lesender Befehlsverlauf-Endpunkt",
+        "internal/cmdsign/cmdsign.go: Store.Refresh bekommt einen begrenzten 3s-HTTP-Timeout - derselbe bestehende Fehlerpfad wie ein gewoehnlicher Netzwerkfehler, kein Fail-Open",
+        "cmd/bridge/smart_tunnel_properties.go+smart_tunnel_identity_conflict.go (neu)+internal/deviceidentity/conflict.go: monkeyControlPath ersetzt das kollidierende controlAddress; serial_mismatch-Case (mit neuem optionalen origin-Feld) ersetzt den Ad-hoc-identityConflict-Freitext, Schreibzugriff ueber einen dedizierten, store-gebundenen OnPollObserved-Hook",
+        "Release signiert (dev-2026-09), linux/arm64, GitDirty=false - Installation auf den Showroom-Bridges 192.168.168.203/.204 ueber deren jeweiligen normalen Updateweg freigegeben"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.52",
       "summary": "Folgefix OpenRemote EnsureAsset-Reconciliation (Auftrag Alexander 25.-27.10.2026, 33429bc): monkeyMaintenanceDesired fehlte auf bereits bestehenden, laenger laufenden Bridge-Assets vollstaendig (Live-Fund auf der Showroom-Bridge .203 waehrend der WolfVision-Hardwareabnahme, AP3) - der bereits gebunden-Reconcile-Pfad ergaenzt fehlende bridgeOwnerExternalInput-Attribute jetzt additiv nach, ohne einen bereits vorhandenen externen Kommandowert zu ueberschreiben. Isolierte Abnahme gegen ein echtes OpenRemote 1.29 bestanden (gemeinsam mit monKey Cockpit, isolierter Stack, Realm ortest): Attribut ergaenzt, Asset-Identitaet erhalten, kein bereits vorhandener Wert angefasst, idempotent.",
       "features": [
