@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "0.9.3-alpha.54",
+      "summary": "net.wifi-Selfheal-Regression behoben (f6e6e0a, Phase19_Gesamtplan.md): checkNetWifi verglich bisher einen Textsubstring (\"activated\") aus dem falschen nmcli-Vokabular und meldete dadurch jede WLAN-Schnittstelle in jedem Zustand faelschlich als gestoert - auf .203 hat das waehrend des Alpha.53-Rollouts eine gesunde WLAN-Verbindung per Self-Healing wiederholt zwangsweise neu verbinden lassen und den automatischen Update-Rollback ausgeloest (Job 06GSVPAJWY7AD7E1K2XCTYRXF0). Jetzt wird ausschliesslich der numerische NetworkManager-Geraetezustand (NM_DEVICE_STATE) ausgewertet, kein Text-/Substring-Vergleich mehr. Vollstaendige Tests ueber die gesamte Zustandstabelle; bestehende Recovery-/Cooldown-/Eskalationslogik unveraendert und weiterhin bestaetigt. Kein weiterer inhaltlicher Unterschied zu alpha.53.",
+      "features": [
+        "net.wifi-Selfheal-Fix"
+      ]
+    },
+    {
       "version": "0.9.3-alpha.53",
       "summary": "Signierschluessel-Wiederherstellung + Nachbesserungstag 02.11.2026 (Phase19_Gesamtplan.md, Blocks 43-50): node-gebundene Strukturknoten-Anzeige korrigiert (Edit-Systempfad/Loesch-Sperre fuer am Strukturknoten platzierte Systeme), Bedienebene-Nachbesserung (Vorschlagen+Übernehmen statt Senden pro Klick, Echo-vs-gesendet sichtbar unterschieden inkl. Zeitueberschreitung, kompakter Befehlsverlauf), PerformanceBaseline-Testflakiness root-cause-behoben (versteckte, ungemockte Netzwerkabhaengigkeit + begrenzter Timeout in cmdsign.Store.Refresh), SMART-Vertrag mit Cockpit vollstaendig umgesetzt (device-identity-1.0 §6 monkeyControlPath statt kollidierendem controlAddress, §3b serial_mismatch-Case in monkeyIdentityConflicts statt Ad-hoc-Freitext, beide mit Merge-Level-/Idempotenz-Tests). Zentrale go test ./... -p 1 -count=1 vor diesem Release clean.",
       "features": [
