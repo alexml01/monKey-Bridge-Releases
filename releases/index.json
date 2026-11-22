@@ -1087,6 +1087,18 @@
         "Build: go1.27.1, CGO_ENABLED=0, GOOS=linux, GOARCH=arm64, go build -trimpath, keine ldflags, sauberer Baum (GitDirty=false)",
         "Release signiert (dev-2026-09), linux/arm64 - NICHT auf einem Livegeraet installiert, keine Aenderung an einem Kanalzeiger"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.66",
+      "summary": "Phase 19 - R1, reiner Versions-Commit (b6f290b) ohne funktionale Aenderung gegenueber alpha.65 (452680c). Ersetzt die urspruengliche R1-Nummerierung alpha.64 (Commit 985f0e8, Block 107): nach R-A lief .222 tatsaechlich auf alpha.65, nicht alpha.64 - ein Geraetezeiger auf alpha.64 waere seitdem von update_check.gos releaseprovider.IsNewer(installiert, Zeiger) abgelehnt worden, da alpha.64 < alpha.65. alpha.64 bleibt deshalb dauerhaft unveroeffentlicht und ungenutzt (Nummer vergeben, nicht wiederverwendet - bestehende Konvention seit alpha.57-60). Zweck dieses Release-Schritts: die erste Version, die tatsaechlich ueber den regulaeren signierten install_release_by_version-Weg UND den geraetegebundenen Zeiger (Vertrag device-identity-1.0.md Anhang/devptr, Abschnitt 2a) auf .222 installiert wird - R0/alpha.63 und die administrative alpha.65-Installation (R-A) liefen beide AUSSERHALB dieses Mechanismus.",
+      "features": [
+        "Reiner Versions-Commit (b6f290b), keine Code-Aenderung gegenueber alpha.65 (452680c)",
+        "Ersetzt die zurueckgezogene R1-Nummerierung alpha.64 (985f0e8) - dessen Artefakte/Katalog-Diff/Zeiger-Entwurf bleiben unveroeffentlicht und ungenutzt",
+        "Ausschliesslich fuer .222 vorgesehen ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json - kein allgemeiner Kanalzeiger",
+        "Build: go1.27.1, CGO_ENABLED=0, GOOS=linux, GOARCH=arm64, go build -trimpath, keine ldflags, sauberer Baum (GitDirty=false)",
+        "Release signiert (dev-2026-09), linux/arm64",
+        "Installation erfolgt erst nach Cockpits Pruefung des Geraetezeigers gegen das auf .222 installierte alpha.65 (IsNewer) und Codex Freigabe - dieser Katalog-Commit selbst loest keine Installation aus"
+      ]
     }
   ]
 }
