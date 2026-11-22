@@ -1072,6 +1072,21 @@
         "Volle internal/bridgeidentity-, internal/device- (-race) und cmd/bridge- (-p 1 bzw. -race) Suiten sowie Repo-Build/-Vet gruen",
         "Release signiert (dev-2026-09), linux/amd64 und linux/arm64, GitDirty=false - NICHT auf der Dev-VM installiert, Installation erfolgt gesondert ueber das Cockpit"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.63",
+      "summary": "Phase 19 Block 85/86 - R0 ausschliesslich fuer .222 ueber den Geraetezeiger (§2a), KEIN Kanalzeiger. Gegenueber dem auf .222 tatsaechlich installierten alpha.52 kumuliert dieses Release mehrere echte Funktionen aus spaeteren Phase-19-Bloecken: Rechtepruefung des Release-Baums vor Installation (verifyReleaseTreePermissions, rein lesend), feste Schluessel-Kanal-Bindung bei der Signaturpruefung (release.VerifyKeyChannelBinding), den geraetegebundenen signierten Zeiger selbst (§2a, Block 84) sowie die Kanalmeldung im Update-Check-Status (updateCheckResult.Channel). Gegenstand DIESES Release-Schritts sind die sechs Befunde Z1-Z6 aus Cockpits Gegenpruefung der DevicePointer-Pruefkette (Block 85/86) - keine weiteren neuen Funktionen gegenueber alpha.62. Je Befund eigener Commit+Test+Gegentest (kein gemeinsamer gruener Paketlauf als Nachweis). Live-Installation ist NICHT Teil dieses Release-Schritts (S4 Build/Signierung); sie bleibt den vereinbarten Gates vorbehalten.",
+      "features": [
+        "Z1: Versionsvergleich im DevicePointer.Verify nutzt jetzt releaseprovider.IsNewer (numerische Prerelease-Ordnung, z.B. alpha.100 > alpha.63) statt des bewusst groben compareMajorMinorPatch",
+        "Z2: der beim Geraetezeiger geprueften Manifest-Hash wird bis zum Agent-Download durchgereicht und vor jeder Mutation erneut verglichen (TOCTOU-Schutz bei Manifestwechsel zwischen Pruefung und Aufloesung, resolveInstallIdentityFor)",
+        "Z3: eine bei bestehender Geraetezeiger-Bindung nicht ladbare eigene bridgeID schlaegt jetzt fail-closed fehl statt leise auf \"\" zu degradieren (tryDevicePointerRelease)",
+        "Z4: CatalogProvider.DevicePointer validiert das bridgeID-Format (id.Valid) vor der URL-Konstruktion",
+        "Z5: Updatecheck (Check) und Portal-/Cockpit-Installationsangebot nutzen jetzt denselben Resolver (resolveCheckRelease); vorher rief Check() den Provider versehentlich doppelt auf",
+        "Z6: dieser Release-Schritt selbst - neue R0-Revision mit allen funf Korrekturen, Kandidat-Commit 0f3639e + reiner Versions-Commit b0cf71a",
+        "Je Befund eigener Commit+Test+Gegentest, siehe docs/history/phases/phase-19/Phase19_Gesamtplan.md Block 86 im Bridge-Repository",
+        "Build: go1.27.1, CGO_ENABLED=0, GOOS=linux, GOARCH=arm64, go build -trimpath, keine ldflags, sauberer Baum (GitDirty=false)",
+        "Release signiert (dev-2026-09), linux/arm64 - NICHT auf einem Livegeraet installiert, keine Aenderung an einem Kanalzeiger"
+      ]
     }
   ]
 }
