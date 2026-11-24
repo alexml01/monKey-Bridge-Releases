@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "bridgeId": "06GS3VRQ5WVTWT5T3J25A95FP4",
-  "version": "0.9.3-alpha.66",
+  "version": "0.9.3-alpha.67",
   "channel": "development",
-  "manifestSha256": "65b626179eb9f38b1812ff5c42f62b7396edd8713553c9ca441a6273a58434ac",
-  "sequence": 1,
-  "issuedAt": "2026-11-22T22:15:39.78149Z",
+  "manifestSha256": "28a30875900f321cf70bd6ad9e2d89a1fe7cde3c58b75090c503db5c19132471",
+  "sequence": 2,
+  "issuedAt": "2026-11-24T21:07:47.679558779Z",
   "state": "active",
   "keyId": "dev-2026-09",
-  "signature": "XJZtbXaPC+sYfJDD1nEGUYYl1cVRUwt4Q2zg+aZlgtTYUctp8sl3U3d1sas3wVexQxMGcxHwqGgJ9adUZjNzDQ=="
+  "signature": "XM+pweM0hU3OV1GPtuKjaKQ4DyXYhsVpW6jVW+d+eJNQJs/Ps5ivOEXQUJi1O/4h8hpmoUjuOwyaDrirnzuMDQ=="
 }
