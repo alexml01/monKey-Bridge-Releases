@@ -1099,6 +1099,20 @@
         "Release signiert (dev-2026-09), linux/arm64",
         "Installation erfolgt erst nach Cockpits Pruefung des Geraetezeigers gegen das auf .222 installierte alpha.65 (IsNewer) und Codex Freigabe - dieser Katalog-Commit selbst loest keine Installation aus"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.67",
+      "summary": "Phase 19 - alpha.67 (Commit afdfdf5): F17/F20 (Geraeteidentitaet S1), F21 (Recovery R-REC-1), F23 (Rollback-fehlgeschlagen-Status + Admin-Bestaetigung im Portal), F24 (Broker-Versionsmarker fsync + eng begrenzte Heilung, R-RETRY-1). Signiert vom Cockpit ueber den regulaeren S-222-Weg auf .222 (dev-2026-09), geprueft gegen unabhaengigen Cockpit-Nachbau (5/5 byteidentisch, pkgcheck alle Pruefungen OK). Nutzerfreigabe 24.11.2026: Angebot ausschliesslich fuer .222 ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json.",
+      "features": [
+        "F17/F20: Geraeteidentitaet S1 (device-identity-1.0 v1.2)",
+        "F21: Recovery validiert Material vor dem Stoppen der Dienste (R-REC-1)",
+        "F23: Agent-Status RollbackFailedAwaitingAck und Portal-Bestaetigung (protected-baseline 6e)",
+        "F24: Broker-Versionsmarker mit fsync, Heilung nur bei unparsebarem Marker und Identitaetsnachweis (protected-baseline 6f)",
+        "Ausschliesslich fuer .222 vorgesehen ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json - kein allgemeiner Kanalzeiger, .203/.204 ohne Zeiger",
+        "Build: go1.27.1, CGO_ENABLED=0, GOOS=linux, GOARCH=arm64, go build -trimpath, keine ldflags, sauberer Baum (GitDirty=false)",
+        "Release signiert (dev-2026-09), linux/arm64",
+        "Dieser Katalog-Commit selbst loest keine Installation aus - Installation und Browserabnahme auf .222 durch Codex"
+      ]
     }
   ]
 }
