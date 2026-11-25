@@ -1125,6 +1125,18 @@
         "Release signiert (dev-2026-09), linux/arm64",
         "Dieser Katalog-Commit selbst loest keine Installation aus - Installation und Browserabnahme auf .222 durch Codex"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.69",
+      "summary": "Phase 19 - alpha.69 (Commit 5d3892a = ca5834c + Versionsanhebung), F26: OpenRemote-Adapter live-typsicher - Update eines Assets behaelt Live-Typ und childAssetType, Pflicht-Defaults nur wenn live und im Patch fehlend (behebt HTTP 403 bei Gebaeude-Refresh und Retire-Markierung, verhindert Ueberschreiben von notes/location/area/roomNumber). Agent/Broker/Recovery-Code unveraendert (Binaries nur wegen Version/Revision neu). Signiert vom Cockpit ueber den regulaeren S-222-Weg auf .222 (dev-2026-09), geprueft gegen unabhaengigen Cockpit-Nachbau (5/5 byteidentisch, pkgcheck alle Pruefungen OK). Nutzerfreigabe 25.11.2026: Angebot ausschliesslich fuer .222 ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json.",
+      "features": [
+        "F26: UpdateAssetAttributes mit Live-Typ, ErrAssetTypeMismatch statt geratenem PUT, Defaults nur bei fehlendem Live-/Patch-Attribut; Retire-Pfad mit korrektem Asset-Typ",
+        "Gates: Linux -race (openremote/structurecmd/cmd/bridge) 0 Races, einziger FAIL umgebungsbedingt (BusyBox setpriv) und mit util-linux setpriv PASS; VM 68->69 SUCCESS; 68->69 Validatorfehler -> ROLLED_BACK auf 68",
+        "Ausschliesslich fuer .222 vorgesehen ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json - kein allgemeiner Kanalzeiger, .203/.204 ohne Zeiger",
+        "Build: go1.27.1, CGO_ENABLED=0, GOOS=linux, GOARCH=arm64, go build -trimpath, keine ldflags, sauberer Baum (GitDirty=false)",
+        "Release signiert (dev-2026-09), linux/arm64",
+        "Dieser Katalog-Commit selbst loest keine Installation aus - Installation und Browserabnahme auf .222 durch Codex"
+      ]
     }
   ]
 }
