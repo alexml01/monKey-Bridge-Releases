@@ -1113,6 +1113,18 @@
         "Release signiert (dev-2026-09), linux/arm64",
         "Dieser Katalog-Commit selbst loest keine Installation aus - Installation und Browserabnahme auf .222 durch Codex"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.68",
+      "summary": "Phase 19 - alpha.68 (Commit 1a8e6a3), ausschliesslich E2: lokaler Portal-Schalter 'Zentrale Strukturverwaltung (MONKey Cockpit)' (POST /settings/system/agent/remote-structure-management, Berechtigung system.maintenance, Herkunftspruefung + Audit, Standard AUS). Agent/Broker/Recovery-Code unveraendert gegenueber alpha.67 (Binaries nur wegen eingebetteter Version/Revision neu). Signiert vom Cockpit ueber den regulaeren S-222-Weg auf .222 (dev-2026-09), geprueft gegen unabhaengigen Cockpit-Nachbau (5/5 byteidentisch, pkgcheck alle Pruefungen OK). Nutzerfreigabe 25.11.2026: Angebot ausschliesslich fuer .222 ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json.",
+      "features": [
+        "E2: Portal-Schalter fuer zentrale Strukturverwaltung (structure-command-2.0), Standard AUS, nur Systemadministrator, CSRF-/Herkunftsschutz und Audit auch bei Ablehnung",
+        "Gates: Linux -race cmd/portal 0 Races; VM 67->68 SUCCESS; 67->68 Validatorfehler -> ROLLED_BACK auf 67; E2-Negativtests am installierten 68",
+        "Ausschliesslich fuer .222 vorgesehen ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json - kein allgemeiner Kanalzeiger, .203/.204 ohne Zeiger",
+        "Build: go1.27.1, CGO_ENABLED=0, GOOS=linux, GOARCH=arm64, go build -trimpath, keine ldflags, sauberer Baum (GitDirty=false)",
+        "Release signiert (dev-2026-09), linux/arm64",
+        "Dieser Katalog-Commit selbst loest keine Installation aus - Installation und Browserabnahme auf .222 durch Codex"
+      ]
     }
   ]
 }
