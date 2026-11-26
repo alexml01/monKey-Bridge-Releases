@@ -1137,6 +1137,18 @@
         "Release signiert (dev-2026-09), linux/arm64",
         "Dieser Katalog-Commit selbst loest keine Installation aus - Installation und Browserabnahme auf .222 durch Codex"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.70",
+      "summary": "Phase 19 - alpha.70 (Commit 253d942 = 19f6605 + Versionsanhebung), F27: neues separates Attribut monkeySyncIssuesMeta {generatedAt, cycle, total, truncated, readError} je Abgleichzyklus - Lesefehler von echter leerer Liste unterscheidbar, Frischemerkmal unabhaengig vom OR-Zeitstempel; monkeySyncIssues bleibt unveraendert das nackte Array. Agent/Broker/Recovery-Code unveraendert (Binaries nur wegen Version/Revision neu). Signiert vom Cockpit ueber den regulaeren S-222-Weg auf .222 (dev-2026-09), geprueft gegen unabhaengigen Cockpit-Nachbau (6/6 byteidentisch, pkgcheck alle Pruefungen OK). Nutzerfreigabe 26.11.2026: Angebot ausschliesslich fuer .222 ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json.",
+      "features": [
+        "F27: monkeySyncIssuesMeta aus derselben Erhebung wie monkeySyncIssues (backend_bindings genau einmal gelesen), Prozess-Zyklenzaehler als Frischemerkmal; Erstanlage 57 Attribute",
+        "Gates: Linux -race (openremote/structurecmd/cmd/bridge) 0 Races, 0 FAIL (mit util-linux setpriv); VM 69->70 SUCCESS 5/5; 69->70 Validatorfehler -> ROLLED_BACK auf 69 (Broker/Recovery forward-only)",
+        "Ausschliesslich fuer .222 vorgesehen ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json - kein allgemeiner Kanalzeiger, .203/.204 ohne Zeiger",
+        "Build: go1.27.1, CGO_ENABLED=0, GOOS=linux, GOARCH=arm64, go build -trimpath, keine ldflags, sauberer Baum (GitDirty=false)",
+        "Release signiert (dev-2026-09), linux/arm64",
+        "Dieser Katalog-Commit selbst loest keine Installation aus - Installation und Browserabnahme auf .222 durch Codex"
+      ]
     }
   ]
 }
