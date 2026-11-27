@@ -1162,6 +1162,18 @@
         "Release signiert (dev-2026-09), linux/arm64",
         "Dieser Katalog-Commit selbst loest keine Installation aus - Installation und Browserabnahme auf .222 durch Codex"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.72",
+      "summary": "Phase 19 - alpha.72 (Commit 668f691 = ac132c6 + G10-RetiredAt e0612ac + atomarer Relink 9d7aaf0 + Minor-Korrektur 52713c4 + Versionsanhebung, Branch integration/g10-retiredat): Stilllegung entscheidet ueber retired_at statt Status (auch bei verdorbener Statuszeile wie T6 auf .222); signierter link-Befehl hebt eine Stilllegung atomar auf, 0 betroffene Zeilen enden als conflict; Referenzzaehlung nach retired_at. Agent/Broker/Recovery-Code unveraendert (Binaries nur wegen Version/Revision neu). Signiert vom Cockpit ueber den regulaeren S-222-Weg auf .222 (dev-2026-09), geprueft gegen unabhaengigen Cockpit-Nachbau (6/6 byteidentisch mit Bridge-Nachbau, pkgcheck alle Pruefungen OK). Angebot ausschliesslich fuer .222 ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json.",
+      "features": [
+        "G10: RetiredAt massgeblich in allen Guards (e0612ac); RelinkBackendBinding atomar inkl. Aufhebung retired_* (9d7aaf0); RowsAffected=0 -> conflict, Audit ohne Freitext (52713c4)",
+        "Gates: Linux -race .90 (openremote/store/structurecmd/cmd/bridge) goexit 0, 0 Races, 0 FAIL; VM 69->71->72 SUCCESS 5/5; 69->71->72 Validatorfehler -> ROLLED_BACK auf 71 (Broker/Recovery forward-only auf 72)",
+        "Ausschliesslich fuer .222 vorgesehen ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json - kein allgemeiner Kanalzeiger, .203/.204 ohne Zeiger",
+        "Build: go1.27.1, CGO_ENABLED=0, GOOS=linux, GOARCH=arm64, go build -trimpath, keine ldflags, sauberer Baum (GitDirty=false), Tag v0.9.1 erreichbar",
+        "Release signiert (dev-2026-09), linux/arm64",
+        "Dieser Katalog-Commit selbst loest keine Installation aus - Installation und Browserabnahme auf .222 durch Codex"
+      ]
     }
   ]
 }
