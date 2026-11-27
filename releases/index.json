@@ -1174,6 +1174,19 @@
         "Release signiert (dev-2026-09), linux/arm64",
         "Dieser Katalog-Commit selbst loest keine Installation aus - Installation und Browserabnahme auf .222 durch Codex"
       ]
+    },
+    {
+      "version": "0.9.3-alpha.82",
+      "summary": "monKey Bridge - Version: 0.9.3-19.1.82 · Alpha (Build 82, Freigabenummer 1; technische Kennung 0.9.3-alpha.82, Commit 7d3c3bbf). D26: Lifecycle-Korrektur B1-B8/B5/R1-R3 (atomares Loeschen+Sync, gezielte objektbezogene Bestaetigung, Schutz stillgelegter Objekte, remote_failed) plus Versionierung versioning-1.0 (eine Buildidentitaet: Grundversion/Phase/Run/Build/Reifegrad; Run 1 historisch belegt, Alpha ohne Nummer; Portal trennt Produktversion, Buildnummer und technische Update-Kennung). Agent/Broker/Recovery/Trust/Rechte unveraendert. Signiert vom Cockpit ueber den regulaeren S-222-Weg auf .222 (dev-2026-09), geprueft gegen unabhaengigen Cockpit-Nachbau (12/12 byteidentisch mit Bridge-Nachbau, pkgcheck alle Pruefungen OK). Angebot ausschliesslich fuer .222 ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json.",
+      "features": [
+        "Lifecycle D26: Delete+Sync in einer Transaktion, gezielte Bestaetigung je Objekt (B5), retired-Schutz, R1 Objekttyp, R2 R7-Fehlerformat, R3 MoveDevice-Ziel",
+        "Versionierung: Anzeige 'monKey Bridge – Version: 0.9.3-19.1.82 · Alpha'; Build 82 aus build/bridge/82 (Startminimum build-floor/bridge/81, Schaetzung); Freigabenummer approval/bridge/1; technische Kennung flach 0.9.3-alpha.82",
+        "Gates: Linux -race .90 (openremote/store/structurecmd/cmd/bridge) goexit 0, 0 Races; VM 69->71->72->82 SUCCESS 5/5; 72->82 Validatorfehler -> ROLLED_BACK auf 72 (Broker/Recovery forward-only auf 82)",
+        "Ausschliesslich fuer .222 vorgesehen ueber channels/devices/06GS3VRQ5WVTWT5T3J25A95FP4.json - kein allgemeiner Kanalzeiger, .203/.204 ohne Zeiger",
+        "Build: go1.27.1, CGO_ENABLED=0, GOOS=linux, GOARCH=arm64, go build -trimpath, -ldflags BuildIdentity, sauberer Baum (GitDirty=false)",
+        "Release signiert (dev-2026-09), linux/arm64",
+        "Dieser Katalog-Commit selbst loest keine Installation aus - Installation und Browserabnahme auf .222 durch Codex"
+      ]
     }
   ]
 }
